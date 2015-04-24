@@ -1,0 +1,29 @@
+@gmf
+@namespace(uri="UsModel", prefix="UsModel")
+package us;
+
+class USNode extends UsPart{
+@gmf.compartment
+val UsElement[*] elements;
+}
+
+@gmf.node(label = "description")
+class UsPart {
+	attr String description;
+}
+
+class UsElement extends UsPart {
+	attr UsElementType type;
+}
+
+enum UsElementType {
+	ROLE;
+	ACTION;
+	GOAL;
+}
+
+@gmf.diagram(model.extension="us", diagram.extension="usdiagram")
+class USModel {
+  attr String name;
+  val USNode[*] uss;
+}
