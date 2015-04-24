@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="istar" nsURI="IstarModel" nsPrefix="IstarModel">
+  <eAnnotations source="gmf"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IstarModel">
+    <eAnnotations source="gmf.diagram">
+      <details key="model.extension" value="istar"/>
+      <details key="diagram.extension" value="istardiagram"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependencyLinks" upperBound="-1"
+        eType="#//IstarDependencyLink" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actorLinks" upperBound="-1"
+        eType="#//IstarActorLink" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//IstarElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compartments" upperBound="-1"
+        eType="#//IstarCompartment" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IstarElement" eSuperTypes="#//IstarIntentionalElement">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//IstarElementType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IstarCompartment" eSuperTypes="#//IstarNodeObject">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//IstarCompartmentType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="meanEndLinks" upperBound="-1"
+        eType="#//IstarMeanEndLink" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tasksDecompositions" upperBound="-1"
+        eType="#//IstarTaskDecomposition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contributionLinks" upperBound="-1"
+        eType="#//IstarContributionLink" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//IstarElement" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="collapsible" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IstarActorLink" eSuperTypes="#//IstarRelationship">
+    <eAnnotations source="gmf.link">
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="target.decoration" value="arrow"/>
+      <details key="width" value="2"/>
+      <details key="label" value="type"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//IstarActorLinkType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//IstarCompartment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//IstarCompartment"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IstarDependencyLink" eSuperTypes="#//IstarRelationship">
+    <eAnnotations source="gmf.link">
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="target.decoration" value="arrow"/>
+      <details key="width" value="2"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//IstarDependencyLinkType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//IstarNodeObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//IstarNodeObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IstarNodeObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IstarRelationship"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IstarMeanEndLink" eSuperTypes="#//IstarRelationship">
+    <eAnnotations source="gmf.link">
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="target.decoration" value="arrow"/>
+      <details key="width" value="2"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//IstarIntentionalElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//IstarIntentionalElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IstarIntentionalElement" eSuperTypes="#//IstarNodeObject"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IstarTaskDecomposition" eSuperTypes="#//IstarRelationship">
+    <eAnnotations source="gmf.link">
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="target.decoration" value="arrow"/>
+      <details key="width" value="2"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//IstarIntentionalElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//IstarIntentionalElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IstarContributionLink" eSuperTypes="#//IstarRelationship">
+    <eAnnotations source="gmf.link">
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="target.decoration" value="arrow"/>
+      <details key="width" value="2"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//IstarContributionType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//IstarIntentionalElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//IstarIntentionalElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="IstarCompartmentType">
+    <eLiterals name="ACTOR"/>
+    <eLiterals name="AGENT" value="1"/>
+    <eLiterals name="ROLE" value="2"/>
+    <eLiterals name="POSITION" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="IstarElementType">
+    <eLiterals name="GOAL"/>
+    <eLiterals name="TASK" value="1"/>
+    <eLiterals name="RESOURCE" value="2"/>
+    <eLiterals name="SOFTGOAL" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="IstarDependencyLinkType">
+    <eLiterals name="COMMITTED"/>
+    <eLiterals name="OPEN" value="1"/>
+    <eLiterals name="CRITICAL" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="IstarActorLinkType">
+    <eLiterals name="ISA"/>
+    <eLiterals name="COVERS" value="1"/>
+    <eLiterals name="ISPARTOF" value="2"/>
+    <eLiterals name="OCCUPIES" value="3"/>
+    <eLiterals name="PLAYS" value="4"/>
+    <eLiterals name="INS" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="IstarContributionType">
+    <eLiterals name="MAKE"/>
+    <eLiterals name="BREAK" value="1"/>
+    <eLiterals name="UNKNOWN" value="2"/>
+    <eLiterals name="SOMEPLUS" value="3"/>
+    <eLiterals name="SOMEMINUS" value="4"/>
+    <eLiterals name="AND" value="5"/>
+    <eLiterals name="OR" value="6"/>
+    <eLiterals name="HELP" value="7"/>
+    <eLiterals name="HURT" value="8"/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/US/src" modelPluginID="US" modelName="Us"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false">
+  <foreignModel>US.emf</foreignModel>
+  <genPackages prefix="Us" disposableProviderFactory="true" ecorePackage="US.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="US.ecore#//UsElementType">
+      <genEnumLiterals ecoreEnumLiteral="US.ecore#//UsElementType/ROLE"/>
+      <genEnumLiterals ecoreEnumLiteral="US.ecore#//UsElementType/ACTION"/>
+      <genEnumLiterals ecoreEnumLiteral="US.ecore#//UsElementType/GOAL"/>
+    </genEnums>
+    <genClasses ecoreClass="US.ecore#//USNode">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference US.ecore#//USNode/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="US.ecore#//UsPart">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute US.ecore#//UsPart/description"/>
+    </genClasses>
+    <genClasses ecoreClass="US.ecore#//UsElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute US.ecore#//UsElement/type"/>
+    </genClasses>
+    <genClasses ecoreClass="US.ecore#//USModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute US.ecore#//USModel/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference US.ecore#//USModel/uss"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

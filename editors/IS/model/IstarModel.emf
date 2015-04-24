@@ -1,0 +1,113 @@
+@gmf
+@namespace(uri="IstarModel", prefix="IstarModel")
+package istar;
+
+@gmf.diagram(model.extension="istar", diagram.extension="istardiagram")
+class IstarModel {
+  attr String title;
+  val IstarDependencyLink[*] dependencyLinks;
+  val IstarActorLink[*] actorLinks;
+  val IstarElement[*] elements;
+  val IstarCompartment[*] compartments;
+}
+
+@gmf.node(label="name")
+class IstarElement extends IstarIntentionalElement {
+  attr IstarElementType type;
+}
+
+@gmf.node(label="name")
+class IstarCompartment extends IstarNodeObject {
+  attr IstarCompartmentType type;
+  val IstarMeanEndLink[*] meanEndLinks;
+  val IstarTaskDecomposition[*] tasksDecompositions;
+  val IstarContributionLink[*] contributionLinks;
+
+  @gmf.compartment(collapsible="true")
+  val IstarElement[*] elements;
+}
+
+@gmf.link(source="source", target="target", target.decoration="arrow", width="2", label="type")
+class IstarActorLink extends IstarRelationship {
+  attr IstarActorLinkType type;
+  ref IstarCompartment source;
+  ref IstarCompartment target;
+}
+
+@gmf.link(source="source", target="target", target.decoration="arrow", width="2")
+class IstarDependencyLink extends IstarRelationship {
+  attr IstarDependencyLinkType type;
+  ref IstarNodeObject source;
+  ref IstarNodeObject target;
+}
+
+class IstarNodeObject {
+  attr String name;
+}
+
+class IstarRelationship {
+}
+
+@gmf.link(source="source", target="target", target.decoration="arrow", width="2")
+class IstarMeanEndLink extends IstarRelationship {
+  ref IstarIntentionalElement source;
+  ref IstarIntentionalElement target;
+}
+
+class IstarIntentionalElement extends IstarNodeObject {
+}
+
+@gmf.link(source="source", target="target", target.decoration="arrow", width="2")
+class IstarTaskDecomposition extends IstarRelationship {
+  ref IstarIntentionalElement source;
+  ref IstarIntentionalElement target;
+}
+
+@gmf.link(source="source", target="target", target.decoration="arrow", width="2")
+class IstarContributionLink extends IstarRelationship {
+  attr IstarContributionType type;
+  ref IstarIntentionalElement source;
+  ref IstarIntentionalElement target;
+}
+
+enum IstarCompartmentType {
+  ACTOR = 0;
+  AGENT = 1;
+  ROLE = 2;
+  POSITION = 3;
+}
+
+enum IstarElementType {
+  GOAL = 0;
+  TASK = 1;
+  RESOURCE = 2;
+  SOFTGOAL = 3;
+}
+
+enum IstarDependencyLinkType {
+  COMMITTED = 0;
+  OPEN = 1;
+  CRITICAL = 2;
+}
+
+enum IstarActorLinkType {
+  ISA = 0;
+  COVERS = 1;
+  ISPARTOF = 2;
+  OCCUPIES = 3;
+  PLAYS = 4;
+  INS = 5;
+}
+
+enum IstarContributionType {
+  MAKE = 0;
+  BREAK = 1;
+  UNKNOWN = 2;
+  SOMEPLUS = 3;
+  SOMEMINUS = 4;
+  AND = 5;
+  OR = 6;
+  HELP = 7;
+  HURT = 8;
+}
+
