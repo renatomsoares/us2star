@@ -1,0 +1,25 @@
+@namespace(uri="us", prefix="us")
+package us;
+
+class UsNode extends UsPart{
+val UsElement[*] elements;
+}
+
+class UsPart {
+	attr String description;
+}
+
+class UsElement extends UsPart {
+	attr UsElementType type;
+}
+
+enum UsElementType {
+	ROLE = 0;
+	ACTION = 1;
+	GOAL = 2;
+}
+
+class UsModel {
+  attr String name;
+  val UsNode[*] uss;
+}

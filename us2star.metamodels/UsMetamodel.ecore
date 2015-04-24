@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="us" nsURI="us" nsPrefix="us">
+  <eClassifiers xsi:type="ecore:EClass" name="UsNode" eSuperTypes="#//UsPart">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//UsElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UsPart">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UsElement" eSuperTypes="#//UsPart">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//UsElementType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="UsElementType">
+    <eLiterals name="ROLE"/>
+    <eLiterals name="ACTION" value="1"/>
+    <eLiterals name="GOAL" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UsModel">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="uss" upperBound="-1" eType="#//UsNode"
+        containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

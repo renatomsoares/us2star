@@ -1,0 +1,39 @@
+rule Us2Star
+	transform us : Us!UsModel
+	to istar : Istar ! IstarModel {
+		
+		istar.title := us.name;
+}
+
+rule Role2Actor
+	transform roleIn : Us ! UsElement
+	to actorOut : Istar ! IstarCompartment {
+	
+			if (roleIn.type = Us!UsElementType#ROLE){
+				actorOut.name := roleIn.description;
+				actorOut.type = Istar!IstarCompartmentType#ACTOR;
+			}
+			
+			
+}
+
+rule MappingGoals
+	transform goalIn : Us ! UsElement
+		to goalOut : Istar ! IstarElement {
+		
+				if (goalIn.type = Us!UsElementType#GOAL){
+					goalOut.name := goalIn.description;
+					goalOut.type = Istar!IstarElementType#GOAL;
+				}
+}
+
+
+rule Action2Task
+	transform actionIn : Us ! UsElement
+		to taskOut : Istar ! IstarElement {
+		
+				if (actionIn.type = Us!UsElementType#ACTION){
+					taskOut.name := actionIn.description;
+					taskOut.type = Istar!IstarElementType#TASK;
+				}
+}
