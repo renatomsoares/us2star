@@ -24,7 +24,7 @@ public class XLSReader {
 			this.file = new FileInputStream(new File(path));
 			this.workbook = new HSSFWorkbook(file);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Provavelmente o arquivo exportado pela EB está protegido.");
 			e.printStackTrace();
 		}
 

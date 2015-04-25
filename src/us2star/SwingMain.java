@@ -30,6 +30,10 @@ public class SwingMain extends JPanel implements ActionListener {
 	static JTextArea log;
 	private JButton openButton;
 	private JButton toStarButton;
+	private JButton logClearButton;
+	private JButton infoButton;
+	private JButton deleteFileButton;
+	private JButton saveButton;
 	private JFileChooser fc;
 	private File currentFile;
 	private final JLabel currentFileLabel;
@@ -44,8 +48,12 @@ public class SwingMain extends JPanel implements ActionListener {
 
 		this.log = new JTextArea(8, 30);
 		this.fc = new JFileChooser();
-		this.openButton = new JButton("Open File...", createImageIcon("/icons/xls_icon.png"));
-		this.toStarButton = new JButton("To i*", createImageIcon("/icons/us2star_icon_4.png"));
+		this.openButton = new JButton("Open file...", createImageIcon("/icons/xls_icon.png"));
+		this.toStarButton = new JButton("To Istar", createImageIcon("/icons/us2star_icon.png"));
+		this.logClearButton = new JButton ("Log clear", createImageIcon("/icons/clear_icon.png"));
+		this.infoButton = new JButton ("Informations", createImageIcon("/icons/info_icon.png"));
+		this.deleteFileButton = new JButton("Delete file", createImageIcon("/icons/x_icon.png"));
+		this.saveButton = new JButton("Save Istar", createImageIcon("/icons/save_icon.png"));
 		this.buttonPanel = new JPanel();
 		this.currentFilePanel = new JPanel();
 		this.currentFileLabel = new JLabel();
@@ -62,8 +70,29 @@ public class SwingMain extends JPanel implements ActionListener {
 		openButton.addActionListener(this);
 		toStarButton.setEnabled(false);
 		toStarButton.addActionListener(this);
+		logClearButton.addActionListener(this);
+		infoButton.addActionListener(this);
+		deleteFileButton.addActionListener(this);
+		saveButton.addActionListener(this);
+		saveButton.setEnabled(false);
+		deleteFileButton.setEnabled(false);
+		deleteFileButton.setMargin(new Insets(2, 2, 2, 2));
+		
+		openButton.setPreferredSize(new Dimension(145, 45));
+		toStarButton.setPreferredSize(new Dimension(145, 45));
+		logClearButton.setPreferredSize(new Dimension(145, 45));
+		infoButton.setPreferredSize(new Dimension(145, 45));
+		deleteFileButton.setPreferredSize(new Dimension(145, 45));
+		saveButton.setPreferredSize(new Dimension(145, 45));
+		
+		
+		
 		buttonPanel.add(openButton);
 		buttonPanel.add(toStarButton);
+		buttonPanel.add(saveButton);
+		buttonPanel.add(deleteFileButton);
+		buttonPanel.add(logClearButton);
+		buttonPanel.add(infoButton);
 		currentFileLabel.setText("Current EB file: ");
 		currentFileName.setForeground(Color.red);
 		currentFileName.setText("No file selected");
@@ -73,9 +102,27 @@ public class SwingMain extends JPanel implements ActionListener {
 		add(logScrollPane, BorderLayout.CENTER);
 		add(currentFilePanel, BorderLayout.PAGE_END);
 	}
+	
+	private void infoButton() {
+		log.append("- INFORMATIONS" + newline);
+		log.append("- 1) This tool is integrated with the Easybacklog (EB) tool." + newline);
+		log.append("- 2) To access EB you need to access the site www.easybacklog.com. " + newline);
+		log.append("- 3) To start the mapping process in US2Star, you need to get a XLS file from EB." + newline);
+
+		log.setCaretPosition(log.getDocument().getLength());
+
+	}
+	
+	private void logClearButton() {
+		log.setText("");
+		log.setCaretPosition(log.getDocument().getLength());
+
+	}
 
 	private void toStarButton() {
 
+		saveButton.setEnabled(true);
+		
 		log.append("- Mapping " + getCurrentFile().getName() + " that contains user stories, to i* model..." + newline);
 		
 		IstarMapping mapping = new IstarMapping(usData);
@@ -98,6 +145,9 @@ public class SwingMain extends JPanel implements ActionListener {
 		for (int i = 0 ; i < mapping.getIstar_dependencyLinks().size() ; i++) {
 			log.append("~ " + mapping.getIstar_dependencyLinks().get(i).getType() + ": " + mapping.getIstar_dependencyLinks().get(i).getSource().getName() + " -> " + mapping.getIstar_dependencyLinks().get(i).getTarget().getName() + newline);
 		}
+		
+		log.setCaretPosition(log.getDocument().getLength());
+
 	}
 
 	private void openButton() {
@@ -114,6 +164,7 @@ public class SwingMain extends JPanel implements ActionListener {
 				if (isEb(file.getPath())) {
 
 					toStarButton.setEnabled(true);
+					deleteFileButton.setEnabled(true);
 					currentFileName.setForeground(new Color(35, 142, 35));
 					currentFileName.setText(file.getName());
 
@@ -141,6 +192,21 @@ public class SwingMain extends JPanel implements ActionListener {
 
 		log.setCaretPosition(log.getDocument().getLength());
 	}
+	
+	private void deleteFileButton() {
+		
+		this.currentFile = null;
+		this.currentFileName.setText("No file selected");
+		this.currentFileName.setForeground(Color.red);
+		this.toStarButton.setEnabled(false);
+		this.saveButton.setEnabled(false);
+		this.deleteFileButton.setEnabled(false);
+		log.append("- Current file deleted!");
+	}
+	
+	private void saveButton() {
+		log.append("~ WARNING: This function isn't implemented!" + newline);
+	}
 
 	public void actionPerformed(ActionEvent e) {
 
@@ -148,6 +214,14 @@ public class SwingMain extends JPanel implements ActionListener {
 			openButton();
 		} else if (e.getSource() == toStarButton) {
 			toStarButton();
+		} else if (e.getSource() == logClearButton) {
+			logClearButton();
+		} else if (e.getSource() == infoButton) {
+			infoButton();
+		} else if (e.getSource() == deleteFileButton) {
+			deleteFileButton();
+		} else if (e.getSource() == saveButton) {
+			saveButton();
 		}
 	}
 
@@ -166,7 +240,7 @@ public class SwingMain extends JPanel implements ActionListener {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		JDialog.setDefaultLookAndFeelDecorated(true);
 
-		JFrame frame = new JFrame("US2Star - Integrated with easybacklog.com");
+		JFrame frame = new JFrame("US2Star - User Stories To Star");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JComponent newContentPane = new SwingMain();
@@ -174,11 +248,12 @@ public class SwingMain extends JPanel implements ActionListener {
 		newContentPane.setOpaque(true);
 		frame.setContentPane(newContentPane);
 
-		log.append("- Tool integrated with Easybacklog (EB)."+ newline);
+		log.append("- Welcome to US2Star!"+ newline);
 
 		frame.pack();          
 		frameLocation(frame);
 		frame.setVisible(true);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
 
 	private static void frameLocation(JFrame frame) {
