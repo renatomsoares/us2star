@@ -80,7 +80,7 @@ public class SwingMain extends JPanel implements ActionListener {
 		
 		IstarMapping mapping = new IstarMapping(usData);
 		
-		log.append("~ Model Name: " + mapping.getIstar_model().getTitle() + newline);
+		log.append("~~~~~~~~~~~~~~~~ i* Model: " + mapping.getIstar_model().getTitle() + " ~~~~~~~~~~~~~~~~" + newline);
 
 		
 		for (int i = 0 ; i < mapping.getIstar_compartments().size() ; i++) {
@@ -93,6 +93,10 @@ public class SwingMain extends JPanel implements ActionListener {
 		
 		for (int i = 0 ; i < mapping.getIstar_actorLinks().size() ; i++) {
 			log.append("~ " + mapping.getIstar_actorLinks().get(i).getType() + ": " + mapping.getIstar_actorLinks().get(i).getSource().getName() + " -> " + mapping.getIstar_actorLinks().get(i).getTarget().getName() + newline);
+		}
+		
+		for (int i = 0 ; i < mapping.getIstar_dependencyLinks().size() ; i++) {
+			log.append("~ " + mapping.getIstar_dependencyLinks().get(i).getType() + ": " + mapping.getIstar_dependencyLinks().get(i).getSource().getName() + " -> " + mapping.getIstar_dependencyLinks().get(i).getTarget().getName() + newline);
 		}
 	}
 

@@ -10,7 +10,6 @@ import istar.IstarElement;
 import istar.IstarElementType;
 import istar.IstarFactory;
 import istar.IstarModel;
-import istar.IstarNodeObject;
 import istar.impl.IstarFactoryImpl;
 import us.UsElementType;
 import us2star.xlstoeditor.UsDataGenerator;
@@ -24,7 +23,6 @@ public class IstarMapping {
 	private ArrayList<IstarElement> istar_elements;
 	private ArrayList<IstarDependencyLink> istar_dependencyLinks;
 	private ArrayList<IstarActorLink> istar_actorLinks;
-	private ArrayList<UsStructure> uss;
 
 	public IstarMapping(UsDataGenerator usData) {
 		this.usData = usData;
@@ -34,19 +32,17 @@ public class IstarMapping {
 		this.istar_dependencyLinks = new ArrayList<IstarDependencyLink>();
 		this.istar_actorLinks = new ArrayList<IstarActorLink>();
 		this.istar_model = istar_factory.createIstarModel();
-		
-		int tam = usData.getUs_elements().size();
-		this.uss = new ArrayList<UsStructure>();
-
-		for (int i = 0 ; i < tam ; i++) {
-			UsStructure us = new UsStructure();
-			uss.add(us);
-		}
-
+	
+		startRules();
+	}
+	
+	private void startRules() {
 		copyModelName();
 		createSystemActor();
 		directTransformations();
-
+		connectDependencyBetweenActorAndGoal();
+		connectDependencyBetweenGoalAndTask();
+		connectLinkBetWeenActorAndSystemActor();
 	}
 
 	private void copyModelName() {
@@ -103,6 +99,18 @@ public class IstarMapping {
 		}
 		return exists;
 	}
+	
+	private boolean dependencyLinkExists(String source, String target) {
+		boolean exists = false;
+		for (int i = 0 ; i < istar_dependencyLinks.size() ; i++) {
+			if ((istar_dependencyLinks.get(i).getSource().getName().equals(source)) &&
+					(istar_dependencyLinks.get(i).getTarget().getName().equals(target))){
+				exists = true;
+			}
+		}
+		return exists;
+	}
+	
 
 	private boolean actorExists(String actorName) {
 		boolean exists = false;
@@ -114,30 +122,51 @@ public class IstarMapping {
 		return exists;
 	}
 
-	private IstarCompartment getActorObject(String actorName) {
-		for (int i = 0 ; i < istar_compartments.size() ; i++) {
-			if (istar_compartments.get(i).getName().equals(actorName)) {
-				return istar_compartments.get(i);
+	
+	private void connectDependencyBetweenActorAndGoal() {
+		for (int i = 0 ; i < usData.getUs_elements().size() ; i++) {
+			if (usData.getUs_elements().get(i).getType() == UsElementType.ROLE) {
+				IstarCompartment actor = searchActor(usData.getUs_elements().get(i).getDescription());
+				IstarElement goal = searchTaskOrGoal(usData.getUs_elements().get(i+2).getDescription());
+				IstarDependencyLink new_dependencyLink = istar_factory.createIstarDependencyLink();
+				new_dependencyLink.setSource(actor);
+				new_dependencyLink.setTarget(goal);
+				//setar tipo de dependência
+				istar_dependencyLinks.add(new_dependencyLink);
 			}
 		}
-		return null;
 	}
-
-	private void connectActorWithSystemActor(IstarCompartment actor) {
-
-		IstarActorLink new_actorlink = istar_factory.createIstarActorLink();
-		new_actorlink.setSource(actor);
-		IstarCompartment systemactor = null;
-
-		for (int i = 0 ; i < istar_compartments.size() ; i++) {
-			if (istar_compartments.get(i).getName().equals("SystemActor")) {
-				systemactor = istar_compartments.get(i);
+	
+	private void connectDependencyBetweenGoalAndTask() {
+		for (int i = 0 ; i < usData.getUs_elements().size() ; i++) {
+			if (usData.getUs_elements().get(i).getType() == UsElementType.GOAL) {
+				IstarElement goal = searchTaskOrGoal(usData.getUs_elements().get(i).getDescription());
+				IstarElement task = searchTaskOrGoal(usData.getUs_elements().get(i-1).getDescription());
+				IstarDependencyLink new_dependencyLink = istar_factory.createIstarDependencyLink();
+				new_dependencyLink.setSource(goal);
+				new_dependencyLink.setTarget(task);
+				//setar tipo de dependência
+				istar_dependencyLinks.add(new_dependencyLink);
 			}
 		}
-		new_actorlink.setTarget(systemactor);
-		istar_actorLinks.add(new_actorlink);
 	}
-
+	
+	private void connectLinkBetWeenActorAndSystemActor() {
+		for (int i = 0 ; i < usData.getUs_elements().size() ; i++) {
+			if (usData.getUs_elements().get(i).getType() == UsElementType.ROLE) {
+				IstarCompartment actor = searchActor(usData.getUs_elements().get(i).getDescription());
+				if (!actorLinkExists(actor.getName(), "SystemActor")) {
+					IstarCompartment systemActor = searchActor("SystemActor");
+					IstarActorLink new_actorLink = istar_factory.createIstarActorLink();
+					new_actorLink.setSource(actor);
+					new_actorLink.setTarget(systemActor);
+					//setar tipo de link
+					istar_actorLinks.add(new_actorLink);
+				}
+			}
+		}
+	}
+	
 	private void directTransformations() {
 		for (int i = 0 ; i < usData.getUs_elements().size() ; i++) {
 
@@ -147,10 +176,6 @@ public class IstarMapping {
 				}
 
 			} else if (usData.getUs_elements().get(i).getType() == UsElementType.GOAL){
-
-				if (!actorLinkExists(usData.getUs_elements().get(i-2).getDescription(), "SystemActor")) {
-					connectActorWithSystemActor(getActorObject(usData.getUs_elements().get(i-2).getDescription()));
-				}
 
 				if (!goalExists(usData.getUs_elements().get(i).getDescription())) {
 					goal2Goal(i);
@@ -162,35 +187,45 @@ public class IstarMapping {
 		}
 	}
 
+	private IstarCompartment searchActor(String actor) {
+		IstarCompartment actorReturn = null;
+		for (int i = 0 ; i < istar_compartments.size() ; i++) {
+			if (istar_compartments.get(i).getName().equals(actor)) {
+				actorReturn = istar_compartments.get(i);
+				break;
+			}
+		}
+		return actorReturn;
+	}
+	
+	private IstarElement searchTaskOrGoal(String actionOrGoal) {
+		IstarElement actorOrGoalReturn = null;
+		for (int i = 0 ; i < istar_elements.size() ; i++) {
+			if (istar_elements.get(i).getName().equals(actionOrGoal)) {
+				actorOrGoalReturn = istar_elements.get(i);
+				break;
+			}
+		}
+		return actorOrGoalReturn;
+	}
+	
 	public IstarModel getIstar_model() {
 		return istar_model;
-	}
-
-	public void setIstar_model(IstarModel istar_model) {
-		this.istar_model = istar_model;
 	}
 
 	public ArrayList<IstarCompartment> getIstar_compartments() {
 		return istar_compartments;
 	}
 
-	public void setIstar_compartments(ArrayList<IstarCompartment> istar_compartments) {
-		this.istar_compartments = istar_compartments;
-	}
-
 	public ArrayList<IstarElement> getIstar_elements() {
 		return istar_elements;
-	}
-
-	public void setIstar_elements(ArrayList<IstarElement> istar_elements) {
-		this.istar_elements = istar_elements;
 	}
 
 	public ArrayList<IstarActorLink> getIstar_actorLinks() {
 		return istar_actorLinks;
 	}
 
-	public void setIstar_actorLinks(ArrayList<IstarActorLink> istar_actorLinks) {
-		this.istar_actorLinks = istar_actorLinks;
+	public ArrayList<IstarDependencyLink> getIstar_dependencyLinks() {
+		return istar_dependencyLinks;
 	}
 }
