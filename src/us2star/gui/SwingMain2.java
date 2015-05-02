@@ -1,4 +1,4 @@
-package us2star;
+package us2star.gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;

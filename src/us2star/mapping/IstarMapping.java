@@ -10,6 +10,7 @@ import istar.IstarElement;
 import istar.IstarElementType;
 import istar.IstarFactory;
 import istar.IstarModel;
+import istar.IstarPackage;
 import istar.impl.IstarFactoryImpl;
 import us.UsElementType;
 import us2star.xlstoeditor.UsDataGenerator;
@@ -19,6 +20,7 @@ public class IstarMapping {
 	private UsDataGenerator usData;
 	private IstarFactory istar_factory;
 	private IstarModel istar_model;
+	private IstarPackage istar_package;
 	private ArrayList<IstarCompartment> istar_compartments;
 	private ArrayList<IstarElement> istar_elements;
 	private ArrayList<IstarDependencyLink> istar_dependencyLinks;
@@ -32,6 +34,7 @@ public class IstarMapping {
 		this.istar_dependencyLinks = new ArrayList<IstarDependencyLink>();
 		this.istar_actorLinks = new ArrayList<IstarActorLink>();
 		this.istar_model = istar_factory.createIstarModel();
+		
 	
 		startRules();
 	}
