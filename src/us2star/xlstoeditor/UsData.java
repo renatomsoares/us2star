@@ -1,6 +1,5 @@
 package us2star.xlstoeditor;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import us.USModel;
@@ -8,13 +7,12 @@ import us.USNode;
 import us.UsElement;
 import us.UsElementType;
 import us.UsFactory;
-import us.impl.UsElementImpl;
 import us.impl.UsFactoryImpl;
 import us2star.xlsreader.UserStoriesParser;
 import us2star.xlsreader.UserStory;
 import us2star.xlsreader.XLSReader;
 
-public class UsDataGenerator {
+public class UsData {
 
 	private XLSReader reader;
 	private UserStoriesParser usp;
@@ -24,7 +22,7 @@ public class UsDataGenerator {
 	private ArrayList<UsElement> us_elements;
 	private USModel us_model;
 
-	public UsDataGenerator(String filePath) {
+	public UsData(String filePath) {
 
 		this.reader = new XLSReader(filePath);
 		this.usp = new UserStoriesParser(reader);

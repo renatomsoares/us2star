@@ -1,7 +1,6 @@
 package us2star.xlsreader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -85,6 +84,12 @@ public class XLSReader {
 		}
 
 		return isEb;
+	}
+	
+	public static boolean isXls(File file){
+		String fileName = file.getName();
+		String ext[] = fileName.split("\\.");
+		return (ext[1].equals("xls"));
 	}
 
 	public ArrayList<String> getUserStories() {

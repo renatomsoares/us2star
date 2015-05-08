@@ -18,16 +18,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
 import us.UsElementType;
-import us2star.mapping.IstarMapping2;
+import us2star.mapping.IstarData;
 import us2star.xlsreader.XLSReader;
-import us2star.xlstoeditor.UsDataGenerator;
+import us2star.xlstoeditor.UsData;
+import us2star.xmicreator.CreateIstarXMI;
 
-public class SwingMain2 extends JPanel implements ActionListener {
+public class SwingUserInterface extends JPanel implements ActionListener {
 
-	static private final String newline = "\n";
-	static JTextArea log;
+	private final String newline = "\n";
+	private JTextArea log;
 	private JButton openButton;
 	private JButton toStarButton;
 	private JButton logClearButton;
@@ -40,9 +43,12 @@ public class SwingMain2 extends JPanel implements ActionListener {
 	private JLabel currentFileName;
 	private JPanel buttonPanel;
 	private JPanel currentFilePanel;
-	private UsDataGenerator usData;
+	private UsData usData;
+	private CreateIstarXMI xmiCreater;
+	private IstarData mapping;
+	private JScrollPane logScrollPane;
 
-	public SwingMain2() {
+	public SwingUserInterface() {
 
 		super(new BorderLayout());
 
@@ -59,106 +65,142 @@ public class SwingMain2 extends JPanel implements ActionListener {
 		this.currentFileLabel = new JLabel();
 		this.currentFileName = new JLabel();
 
-		init ();	
+		init();	
 	}
 
 	private void init() {
-		log.setMargin(new Insets(5, 5, 5, 5));
-		log.setEditable(false);
-		JScrollPane logScrollPane = new JScrollPane(log);
-		//fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+		logScrollPane();
+		addActionListeners();
+		disableButtons();
+		setPreferredButtonSizes(145, 45);
+		addButtonsToButtonPanel();
+		initCurrentFilePanel();
+		makeBorderLayout();
+	}
+
+	private void addActionListeners() {
 		openButton.addActionListener(this);
-		toStarButton.setEnabled(false);
 		toStarButton.addActionListener(this);
 		logClearButton.addActionListener(this);
 		infoButton.addActionListener(this);
 		deleteFileButton.addActionListener(this);
 		saveButton.addActionListener(this);
+	}
+
+	private void disableButtons() {
+		toStarButton.setEnabled(false);
 		saveButton.setEnabled(false);
 		deleteFileButton.setEnabled(false);
-		deleteFileButton.setMargin(new Insets(2, 2, 2, 2));
-		
-		openButton.setPreferredSize(new Dimension(145, 45));
-		toStarButton.setPreferredSize(new Dimension(145, 45));
-		logClearButton.setPreferredSize(new Dimension(145, 45));
-		infoButton.setPreferredSize(new Dimension(145, 45));
-		deleteFileButton.setPreferredSize(new Dimension(145, 45));
-		saveButton.setPreferredSize(new Dimension(145, 45));
-		
-		
-		
+	}
+
+	private void setPreferredButtonSizes(int x, int y) {
+		openButton.setPreferredSize(new Dimension(x, y));
+		toStarButton.setPreferredSize(new Dimension(x, y));
+		logClearButton.setPreferredSize(new Dimension(x, y));
+		infoButton.setPreferredSize(new Dimension(x, y));
+		deleteFileButton.setPreferredSize(new Dimension(x, y));
+		saveButton.setPreferredSize(new Dimension(x, y));
+	}
+
+	private void addButtonsToButtonPanel() {
 		buttonPanel.add(openButton);
 		buttonPanel.add(toStarButton);
 		buttonPanel.add(saveButton);
 		buttonPanel.add(deleteFileButton);
 		buttonPanel.add(logClearButton);
 		buttonPanel.add(infoButton);
+	}
+
+	private void initCurrentFilePanel() {
 		currentFileLabel.setText("Current EB file: ");
 		currentFileName.setForeground(Color.red);
 		currentFileName.setText("No file selected");
 		currentFilePanel.add(currentFileLabel);
 		currentFilePanel.add(currentFileName);
+	}
+
+	private void makeBorderLayout() {
 		add(buttonPanel, BorderLayout.PAGE_START);
 		add(logScrollPane, BorderLayout.CENTER);
 		add(currentFilePanel, BorderLayout.PAGE_END);
 	}
-	
+
+	private void logScrollPane() {
+		log.setMargin(new Insets(5, 5, 5, 5));
+		log.setEditable(false);
+		this.logScrollPane = new JScrollPane(log);
+	}
+
+
 	private void infoButton() {
 		log.append("- INFORMATIONS" + newline);
 		log.append("- 1) This tool is integrated with the Easybacklog (EB) tool." + newline);
 		log.append("- 2) To access EB you need to access the site www.easybacklog.com. " + newline);
 		log.append("- 3) To start the mapping process in US2Star, you need to get a XLS file from EB." + newline);
-
 		log.setCaretPosition(log.getDocument().getLength());
 
 	}
-	
+
 	private void logClearButton() {
 		log.setText("");
 		log.setCaretPosition(log.getDocument().getLength());
 
 	}
+	
+	private void printIstarTitle() {
+		for (int i = 0 ; i < mapping.getIstar_compartments().size() ; i++) {
+			log.append("~ " + mapping.getIstar_compartments().get(i).getType() + ": " + mapping.getIstar_compartments().get(i).getName() + newline);
+		}
+	}
+	
+	private void printIstarElements() {
+		for (int i = 0 ; i < mapping.getIstar_elements().size() ; i++) {
+			log.append("~ " + mapping.getIstar_elements().get(i).getType() + ": " + mapping.getIstar_elements().get(i).getName() + newline);
+		}
+	}
+	
+	private void printIstarActorLinks() {
+		for (int i = 0 ; i < mapping.getIstar_actorLinks().size() ; i++) {
+			log.append("~ " + mapping.getIstar_actorLinks().get(i).getType() + ": " + mapping.getIstar_actorLinks().get(i).getSource().getName() + " -> " + mapping.getIstar_actorLinks().get(i).getTarget().getName() + newline);
+		}
+	}
+	
+	private void printIstarDependencyLinks() {
+		for (int i = 0 ; i < mapping.getIstar_dependencyLinks().size() ; i++) {
+			log.append("~ " + mapping.getIstar_dependencyLinks().get(i).getType() + ": " + mapping.getIstar_dependencyLinks().get(i).getSource().getName() + " -> " + mapping.getIstar_dependencyLinks().get(i).getTarget().getName() + newline);
+		}
+	}
 
 	private void toStarButton() {
 
 		saveButton.setEnabled(true);
-		
+		this.mapping = new IstarData(usData);
 		log.append("- Mapping " + getCurrentFile().getName() + " that contains user stories, to i* model..." + newline);
-		
-		IstarMapping2 mapping = new IstarMapping2(usData);
-		
-		log.append("~~~~~~~~~~~~~~~~ i* Model: " + mapping.getIstar_model().getTitle() + " ~~~~~~~~~~~~~~~~" + newline);
-
-		log.append("~ " + mapping.getSystemActor().getType() + ": " + mapping.getSystemActor().getName() + newline);
-
-		
-		for (int i = 0 ; i < mapping.getIstar_actors().size() ; i++) {
-			log.append("~ " + mapping.getIstar_actors().get(i).getType() + ": " + mapping.getIstar_actors().get(i).getName() + newline);
-		}
-		
-		for (int i = 0 ; i < mapping.getIstar_tasks().size() ; i++) {
-			log.append("~ " + mapping.getIstar_tasks().get(i).getType() + ": " + mapping.getIstar_tasks().get(i).getName() + newline);
-		}
-		
-		for (int i = 0 ; i < mapping.getIstar_goals().size() ; i++) {
-			log.append("~ " + mapping.getIstar_goals().get(i).getType() + ": " + mapping.getIstar_goals().get(i).getName() + newline);
-		}
-		
-		for (int i = 0 ; i < mapping.getIstar_actorLinks().size() ; i++) {
-			log.append("~ " + mapping.getIstar_actorLinks().get(i).getType() + ": " + mapping.getIstar_actorLinks().get(i).getSource().getName() + " -> " + mapping.getIstar_actorLinks().get(i).getTarget().getName() + newline);
-		}
-		
-		for (int i = 0 ; i < mapping.getIstar_dependencyLinks().size() ; i++) {
-			log.append("~ " + mapping.getIstar_dependencyLinks().get(i).getType() + ": " + mapping.getIstar_dependencyLinks().get(i).getSource().getName() + " -> " + mapping.getIstar_dependencyLinks().get(i).getTarget().getName() + newline);
-		}
-		
+		log.append("~~~~~~~~ i* Model: " + mapping.getIstar_model().getTitle() + " ~~~~~~~~" + newline);
+		printIstarTitle();
+		printIstarElements();
+		printIstarActorLinks();
+		printIstarDependencyLinks();
 		log.setCaretPosition(log.getDocument().getLength());
+	}
+	
+	private void printUs() {
+		for (int i = 0 ; i < usData.getUs_elements().size() ; i++) {
 
+			if (usData.getUs_elements().get(i).getType() == UsElementType.ROLE) {
+				log.append("- User Story" + newline);
+				log.append("     Role: " + usData.getUs_elements().get(i).getDescription() + newline);
+			} else if (usData.getUs_elements().get(i).getType() == UsElementType.ACTION) {
+				log.append("     Action: " + usData.getUs_elements().get(i).getDescription() + newline);
+			} else if (usData.getUs_elements().get(i).getType() == UsElementType.GOAL) {
+				log.append("     Goal: " + usData.getUs_elements().get(i).getDescription() + newline);
+			}
+		}
 	}
 
 	private void openButton() {
 
-		int returnVal = fc.showOpenDialog(SwingMain2.this);
+		int returnVal = fc.showOpenDialog(SwingUserInterface.this);
 
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			File file = fc.getSelectedFile();
@@ -173,34 +215,19 @@ public class SwingMain2 extends JPanel implements ActionListener {
 					deleteFileButton.setEnabled(true);
 					currentFileName.setForeground(new Color(35, 142, 35));
 					currentFileName.setText(file.getName());
-
 					setCurrentFile(file);				
-
-					usData = new UsDataGenerator(file.getPath());
-
-					for (int i = 0 ; i < usData.getUs_elements().size() ; i++) {
-
-						if (usData.getUs_elements().get(i).getType() == UsElementType.ROLE) {
-							log.append("- User Story" + newline);
-							log.append("     Role: " + usData.getUs_elements().get(i).getDescription() + newline);
-						} else if (usData.getUs_elements().get(i).getType() == UsElementType.ACTION) {
-							log.append("     Action: " + usData.getUs_elements().get(i).getDescription() + newline);
-						} else if (usData.getUs_elements().get(i).getType() == UsElementType.GOAL) {
-							log.append("     Goal: " + usData.getUs_elements().get(i).getDescription() + newline);
-						}
-					}
-				} else
-					log.append("- ERROR: The xls file <" + file.getName() + "> wasn't exported from Easybacklog." + newline);
-			} else
-				log.append("- ERROR: The file <" + file.getName() + "> haven't xls format." + newline);
+					usData = new UsData(file.getPath());
+					printUs();
+				}
+			} 
 		} else
 			log.append("- WARNING: Open command cancelled by user." + newline);
 
 		log.setCaretPosition(log.getDocument().getLength());
 	}
-	
+
 	private void deleteFileButton() {
-		
+
 		this.currentFile = null;
 		this.currentFileName.setText("No file selected");
 		this.currentFileName.setForeground(Color.red);
@@ -208,13 +235,12 @@ public class SwingMain2 extends JPanel implements ActionListener {
 		this.saveButton.setEnabled(false);
 		this.deleteFileButton.setEnabled(false);
 		log.append("- Current file deleted!");
-		log.setCaretPosition(log.getDocument().getLength());
-
 	}
-	
-	private void saveButton() {
-		log.append("~ WARNING: This function isn't implemented!" + newline);
-		log.setCaretPosition(log.getDocument().getLength());
+
+	private void saveButton() throws ParserConfigurationException, TransformerException {
+
+		xmiCreater = new CreateIstarXMI(mapping, currentFile.getAbsolutePath());
+		log.append("~ File saved: " + newline);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -230,39 +256,26 @@ public class SwingMain2 extends JPanel implements ActionListener {
 		} else if (e.getSource() == deleteFileButton) {
 			deleteFileButton();
 		} else if (e.getSource() == saveButton) {
-			saveButton();
+			try {
+				saveButton();
+			} catch (ParserConfigurationException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (TransformerException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 
 	protected static ImageIcon createImageIcon(String path) {
-		java.net.URL imgURL = SwingMain2.class.getResource(path);
+		java.net.URL imgURL = SwingUserInterface.class.getResource(path);
 		if (imgURL != null) {
 			return new ImageIcon(imgURL);
 		} else {
 			System.err.println("Couldn't find file: " + path);
 			return null;
 		}
-	}
-
-	private static void createAndShowGUI() {
-
-		JFrame.setDefaultLookAndFeelDecorated(true);
-		JDialog.setDefaultLookAndFeelDecorated(true);
-
-		JFrame frame = new JFrame("US2Star - User Stories To Star");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		JComponent newContentPane = new SwingMain2();
-
-		newContentPane.setOpaque(true);
-		frame.setContentPane(newContentPane);
-
-		log.append("- Welcome to US2Star!"+ newline);
-
-		frame.pack();          
-		frameLocation(frame);
-		frame.setVisible(true);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
 
 	private static void frameLocation(JFrame frame) {
@@ -274,38 +287,43 @@ public class SwingMain2 extends JPanel implements ActionListener {
 	}
 
 	private boolean isXls(File file){
-		String fileName = file.getName();
-		String ext[] = fileName.split("\\.");
-		return (ext[1].equals("xls"));
+		if (!XLSReader.isXls(file)) {
+			log.append("- ERROR: The file <" + file.getName() + "> haven't xls format." + newline);
+			return false;
+		}
+		return XLSReader.isXls(file);
 	}
 
 	private boolean isEb(String path) {
 		XLSReader reader = new XLSReader(path);
+		if (!reader.isEb()) {
+			log.append("- ERROR: The xls file <" + currentFile.getName() + "> wasn't exported from Easybacklog." + newline);
+		}
+
 		return reader.isEb();
 	}
 
-	public File getCurrentFile() {
+	private File getCurrentFile() {
 		return currentFile;
 	}
 
-	public void setCurrentFile(File currentFile) {
+	private void setCurrentFile(File currentFile) {
 		this.currentFile = currentFile;
 	}
 
-	public UsDataGenerator getUsData() {
-		return usData;
-	}
+	public static void createAndShowGUI() {
 
-	public void setUsData(UsDataGenerator usData) {
-		this.usData = usData;
-	}
-
-	public static void main(String[] args) {
-
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				createAndShowGUI();
-			}
-		});
+		JFrame.setDefaultLookAndFeelDecorated(true);
+		JDialog.setDefaultLookAndFeelDecorated(true);
+		JFrame frame = new JFrame("US2Star - User Stories To Star");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JComponent newContentPane = new SwingUserInterface();
+		newContentPane.setOpaque(true);
+		frame.setContentPane(newContentPane);
+		//log.append("- Welcome to US2Star!"+ newline);
+		frame.pack();          
+		frameLocation(frame);
+		frame.setVisible(true);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
 }

@@ -10,7 +10,7 @@ import us.impl.UsFactoryImpl;
 import us.util.UsAdapterFactory;
 import us2star.xlsreader.UserStoriesParser;
 import us2star.xlsreader.XLSReader;
-import us2star.xlstoeditor.UsDataGenerator;
+import us2star.xlstoeditor.UsData;
 
 public class Test {
 
@@ -33,7 +33,7 @@ public class Test {
 		System.out.println(model.getName());*/
 		UsAdapterFactory newfactory = new UsAdapterFactory();
 		
-		UsDataGenerator dataGenerator = new UsDataGenerator("\\test.xls");
+		UsData dataGenerator = new UsData("\\test.xls");
 		System.out.println(dataGenerator.getUs_elements().get(5).getDescription());
 		
 	}
