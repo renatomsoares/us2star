@@ -1,163 +1,217 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.8" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="true" nesting-relationships="true">  
-  <class id="1" language="java" name="us.impl.UsElementImpl" project="us2star" 
-    file="/us2star/src/us/impl/UsElementImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="220" y="498"/>    
+  <class id="1" language="java" name="us2star.mapping.AbstractMappingCommand" project="us2star" 
+    file="/us2star/src/us2star/mapping/AbstractMappingCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="332" y="134"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="us.impl.UsFactoryImpl" project="us2star" 
-    file="/us2star/src/us/impl/UsFactoryImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="425" y="494"/>    
+  <class id="2" language="java" name="us2star.mapping.Action2TaskCommand" project="us2star" 
+    file="/us2star/src/us2star/mapping/Action2TaskCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="17" y="262"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="us.impl.USModelImpl" project="us2star" 
-    file="/us2star/src/us/impl/USModelImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="428" y="641"/>    
+  <class id="3" language="java" name="us2star.mapping.ConnectDependencyActorGoalCommand" project="us2star" 
+    file="/us2star/src/us2star/mapping/ConnectDependencyActorGoalCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="126" y="418"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="us.impl.USNodeImpl" project="us2star" file="/us2star/src/us/impl/USNodeImpl.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="619" y="505"/>    
+  <class id="4" language="java" name="us2star.mapping.ConnectDependencyGoalTaskCommand" project="us2star" 
+    file="/us2star/src/us2star/mapping/ConnectDependencyGoalTaskCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="307" x="549" y="46"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="us.impl.UsPackageImpl" project="us2star" 
-    file="/us2star/src/us/impl/UsPackageImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="195" y="292"/>    
+  <class id="5" language="java" name="us2star.mapping.ConnectLinkActorSystemActorCommand" project="us2star" 
+    file="/us2star/src/us2star/mapping/ConnectLinkActorSystemActorCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-13" y="83"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="us.impl.UsPartImpl" project="us2star" file="/us2star/src/us/impl/UsPartImpl.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="433" y="173"/>    
+  <class id="6" language="java" name="us2star.mapping.CopyModelNameCommand" project="us2star" 
+    file="/us2star/src/us2star/mapping/CopyModelNameCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="251" y="-48"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="7" language="java" name="us.UsPart" project="us2star" file="/us2star/src/us/UsPart.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="429" y="354"/>    
+  <class id="7" language="java" name="us2star.mapping.CreateSystemActorCommand" project="us2star" 
+    file="/us2star/src/us2star/mapping/CreateSystemActorCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="219" x="611" y="291"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="us2star.mapping.Goal2GoalCommand" project="us2star" 
+    file="/us2star/src/us2star/mapping/Goal2GoalCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="226" x="461" y="370"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="9" language="java" name="us2star.mapping.IMappingCommand" project="us2star" 
+    file="/us2star/src/us2star/mapping/IMappingCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="367" y="322"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="8" language="java" name="us.UsPackage" project="us2star" file="/us2star/src/us/UsPackage.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="826" y="309"/>    
+  <class id="10" language="java" name="us2star.mapping.IstarData" project="us2star" 
+    file="/us2star/src/us2star/mapping/IstarData.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="331" y="784"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
-  </interface>  
-  <interface id="9" language="java" name="us.UsPackage.Literals" project="us2star" file="/us2star/src/us/UsPackage.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="828" y="781"/>    
+  </class>  
+  <class id="11" language="java" name="us2star.mapping.Role2ActorCommand" project="us2star" 
+    file="/us2star/src/us2star/mapping/Role2ActorCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="763" y="681"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
-  </interface>  
-  <dependency id="10">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="7"/>  
-  </dependency>  
-  <dependency id="11">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
+  </class>  
   <dependency id="12">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <dependency id="13">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <realization id="14">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="8"/>  
-  </realization>  
-  <dependency id="15">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <dependency id="16">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <realization id="17">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="7"/>  
-  </realization>  
-  <dependency id="18">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <generalization id="19">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <dependency id="20">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <dependency id="21">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <dependency id="22">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <nesting id="23">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="9"/>  
-  </nesting>  
-  <dependency id="24">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <generalization id="25">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <dependency id="26">    
-    <end type="SOURCE" refId="2"/>    
+    <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
-  <dependency id="27">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="8"/>  
+  <realization id="13">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <dependency id="14">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="6"/>  
   </dependency>  
-  <dependency id="28">    
+  <realization id="15">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <generalization id="16">    
     <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <dependency id="17">    
+    <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="7"/>  
   </dependency>  
+  <generalization id="18">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <dependency id="19">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <realization id="20">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <realization id="21">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <generalization id="22">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="23">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="24">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <dependency id="25">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="26">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <generalization id="27">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <realization id="28">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <association id="29">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="30" name="istarData"/>      
+      <multiplicity id="31" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="32">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <dependency id="33">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="34">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <association id="35">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="36" name="mapping"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="38">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <generalization id="39">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="40">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <realization id="41">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

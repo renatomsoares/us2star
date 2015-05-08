@@ -2,18 +2,17 @@ package us2star.mapping;
 
 import us2star.xlstoeditor.UsData;
 
-public class CopyModelNameCommand implements IMappingCommand {
+public class CopyModelNameCommand extends AbstractMappingCommand implements IMappingCommand {
 
 	private UsData usData;
-	private IstarData istarData;
 	
 	public CopyModelNameCommand(UsData usData, IstarData istarData) {
+		super(istarData);
 		this.usData = usData;
-		this.istarData = istarData;
 	}
 	@Override
 	public Object execute() {
-		istarData.getIstar_model().setTitle(usData.getUs_model().getName());
+		getIstarData().getIstar_model().setTitle(usData.getUs_model().getName());
 		return true;
 	}
 
