@@ -1,7 +1,0 @@
-# Tracing options for the US.diagram plug-in
-
-# Common issues
-US.diagram/debug=false
-
-# Visual IDs
-US.diagram/debug/visualID=false

@@ -55,10 +55,10 @@ public class SwingUserInterface extends JPanel implements ActionListener {
 		this.log = new JTextArea(8, 30);
 		this.fc = new JFileChooser();
 		this.openButton = new JButton("Open file...", createImageIcon("/icons/xls_icon.png"));
-		this.toStarButton = new JButton("To Istar", createImageIcon("/icons/us2star_icon.png"));
+		this.toStarButton = new JButton("To Istar", createImageIcon("/icons/star_icon.png"));
 		this.logClearButton = new JButton ("Log clear", createImageIcon("/icons/clear_icon.png"));
 		this.infoButton = new JButton ("Informations", createImageIcon("/icons/info_icon.png"));
-		this.deleteFileButton = new JButton("Delete file", createImageIcon("/icons/x_icon.png"));
+		this.deleteFileButton = new JButton("Delete file", createImageIcon("/icons/del_icon.png"));
 		this.saveButton = new JButton("Save Istar", createImageIcon("/icons/save_icon.png"));
 		this.buttonPanel = new JPanel();
 		this.currentFilePanel = new JPanel();
@@ -134,9 +134,9 @@ public class SwingUserInterface extends JPanel implements ActionListener {
 
 	private void infoButton() {
 		log.append("- INFORMATIONS" + newline);
-		log.append("- 1) This tool is integrated with the Easybacklog (EB) tool." + newline);
+		log.append("- 1) This tool is integrated with Easybacklog (EB) tool." + newline);
 		log.append("- 2) To access EB you need to access the site www.easybacklog.com. " + newline);
-		log.append("- 3) To start the mapping process in US2Star, you need to get a XLS file from EB." + newline);
+		log.append("- 3) To get start the mapping process in US2Star, you need to get a XLS file from EB." + newline);
 		log.setCaretPosition(log.getDocument().getLength());
 
 	}
@@ -144,7 +144,6 @@ public class SwingUserInterface extends JPanel implements ActionListener {
 	private void logClearButton() {
 		log.setText("");
 		log.setCaretPosition(log.getDocument().getLength());
-
 	}
 	
 	private void printIstarTitle() {

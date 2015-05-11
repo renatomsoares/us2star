@@ -1,7 +1,0 @@
-# Tracing options for the IS.diagram plug-in
-
-# Common issues
-IS.diagram/debug=false
-
-# Visual IDs
-IS.diagram/debug/visualID=false
