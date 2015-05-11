@@ -1,4 +1,4 @@
-package br.com.us2star.mapping.command;
+package br.com.us2star.mapping.istar.command;
 
 public interface IMappingCommand {
 

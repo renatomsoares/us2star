@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import br.com.us2star.mapping.UsData;
+import br.com.us2star.mapping.us.EB2UsData;
 import br.com.us2star.reader.xls.XLSReader;
 import br.com.us2star.us.UsElementType;
 
@@ -39,7 +39,7 @@ public class UserInterface2 extends JPanel implements ActionListener {
 	private JLabel currentFileName;
 	private JPanel buttonPanel;
 	private JPanel currentFilePanel;
-	private UsData usData;
+	private EB2UsData usData;
 
 	public UserInterface2() {
 
@@ -175,7 +175,7 @@ public class UserInterface2 extends JPanel implements ActionListener {
 
 					setCurrentFile(file);				
 
-					usData = new UsData(file.getPath());
+					usData = new EB2UsData(file.getPath());
 
 					for (int i = 0 ; i < usData.getUs_elements().size() ; i++) {
 
@@ -291,11 +291,11 @@ public class UserInterface2 extends JPanel implements ActionListener {
 		this.currentFile = currentFile;
 	}
 
-	public UsData getUsData() {
+	public EB2UsData getUsData() {
 		return usData;
 	}
 
-	public void setUsData(UsData usData) {
+	public void setUsData(EB2UsData usData) {
 		this.usData = usData;
 	}
 

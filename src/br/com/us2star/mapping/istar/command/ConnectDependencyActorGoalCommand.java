@@ -1,9 +1,10 @@
-package br.com.us2star.mapping.command;
+package br.com.us2star.mapping.istar.command;
 
 import br.com.us2star.istar.IstarCompartment;
 import br.com.us2star.istar.IstarDependencyLink;
 import br.com.us2star.istar.IstarElement;
-import br.com.us2star.mapping.UsData;
+import br.com.us2star.mapping.istar.IstarData;
+import br.com.us2star.mapping.us.UsData;
 import br.com.us2star.us.UsElementType;
 
 public class ConnectDependencyActorGoalCommand extends AbstractMappingCommand implements IMappingCommand {

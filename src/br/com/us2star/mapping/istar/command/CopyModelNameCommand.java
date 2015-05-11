@@ -1,6 +1,7 @@
-package br.com.us2star.mapping.command;
+package br.com.us2star.mapping.istar.command;
 
-import br.com.us2star.mapping.UsData;
+import br.com.us2star.mapping.istar.IstarData;
+import br.com.us2star.mapping.us.UsData;
 
 public class CopyModelNameCommand extends AbstractMappingCommand implements IMappingCommand {
 
@@ -10,6 +11,7 @@ public class CopyModelNameCommand extends AbstractMappingCommand implements IMap
 		super(istarData);
 		this.usData = usData;
 	}
+
 	@Override
 	public Object execute() {
 		getIstarData().getIstar_model().setTitle(usData.getUs_model().getName());

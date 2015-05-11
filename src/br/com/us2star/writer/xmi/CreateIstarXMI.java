@@ -14,23 +14,26 @@ import javax.xml.transform.stream.StreamResult;
 
 
 
+
+
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import br.com.us2star.mapping.command.IstarData;
+import br.com.us2star.mapping.istar.IstarData;
+import br.com.us2star.mapping.istar.UsData2IstarData;
 
 public class CreateIstarXMI {
 
-	private IstarData is_Data;
+	private IstarData isData;
 	private DocumentBuilderFactory docFactory;
 	private DocumentBuilder docBuilder;
 	private Document doc;
 	private Element rootElement;
 	private String pathToSave;
 
-	public CreateIstarXMI(IstarData is_Data, String pathToSave) throws ParserConfigurationException, TransformerException {
-		this.is_Data = is_Data;
+	public CreateIstarXMI(IstarData isData, String pathToSave) throws ParserConfigurationException, TransformerException {
+		this.isData = isData;
 		this.docFactory = DocumentBuilderFactory.newInstance();
 		this.docBuilder = docFactory.newDocumentBuilder();
 		this.doc = docBuilder.newDocument();
@@ -54,7 +57,7 @@ public class CreateIstarXMI {
 	}
 
 	private void createDependencyLinks() {
-		for (int i = 0 ; i < is_Data.getIstar_dependencyLinks().size() ; i++) {
+		for (int i = 0 ; i < isData.getIstar_dependencyLinks().size() ; i++) {
 			Element staff = doc.createElement("dependencyLinks");
 			rootElement.appendChild(staff);
 
@@ -70,15 +73,15 @@ public class CreateIstarXMI {
 	}
 
 	private void createElements() {
-		for (int i = 0 ; i < is_Data.getIstar_elements().size() ; i++) {
+		for (int i = 0 ; i < isData.getIstar_elements().size() ; i++) {
 			Element staff = doc.createElement("elements");
 			rootElement.appendChild(staff);
 
 			Attr name = doc.createAttribute("name");
-			name.setValue(is_Data.getIstar_elements().get(i).getName());
+			name.setValue(isData.getIstar_elements().get(i).getName());
 
 			Attr type = doc.createAttribute("type");
-			type.setValue(is_Data.getIstar_elements().get(i).getType().getName());
+			type.setValue(isData.getIstar_elements().get(i).getType().getName());
 
 			staff.setAttributeNode(name);
 			staff.setAttributeNode(type);
@@ -86,15 +89,15 @@ public class CreateIstarXMI {
 	}
 
 	private void createCompartments() {
-		for (int i = 0 ; i < is_Data.getIstar_compartments().size() ; i++) {
+		for (int i = 0 ; i < isData.getIstar_compartments().size() ; i++) {
 			Element staff = doc.createElement("compartments");
 			rootElement.appendChild(staff);
 
 			Attr name = doc.createAttribute("name");
-			name.setValue(is_Data.getIstar_compartments().get(i).getName());
+			name.setValue(isData.getIstar_compartments().get(i).getName());
 
 			Attr type = doc.createAttribute("type");
-			type.setValue(is_Data.getIstar_compartments().get(i).getType().getName());
+			type.setValue(isData.getIstar_compartments().get(i).getType().getName());
 
 			staff.setAttributeNode(name);
 			staff.setAttributeNode(type);

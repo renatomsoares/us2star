@@ -1,7 +1,8 @@
-package br.com.us2star.mapping.command;
+package br.com.us2star.mapping.istar.command;
 
 import br.com.us2star.istar.IstarCompartment;
 import br.com.us2star.istar.IstarCompartmentType;
+import br.com.us2star.mapping.istar.IstarData;
 
 public class CreateSystemActorCommand extends AbstractMappingCommand implements IMappingCommand {
 	

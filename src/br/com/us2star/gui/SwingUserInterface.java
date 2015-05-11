@@ -21,8 +21,10 @@ import javax.swing.JTextArea;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
-import br.com.us2star.mapping.UsData;
-import br.com.us2star.mapping.command.IstarData;
+import br.com.us2star.mapping.istar.IstarData;
+import br.com.us2star.mapping.istar.UsData2IstarData;
+import br.com.us2star.mapping.us.EB2UsData;
+import br.com.us2star.mapping.us.UsData;
 import br.com.us2star.reader.xls.XLSReader;
 import br.com.us2star.us.UsElementType;
 import br.com.us2star.writer.xmi.CreateIstarXMI;
@@ -45,8 +47,10 @@ public class SwingUserInterface extends JPanel implements ActionListener {
 	private JPanel currentFilePanel;
 	private UsData usData;
 	private CreateIstarXMI xmiCreater;
-	private IstarData mapping;
+	private UsData2IstarData us2star_data;
+	private IstarData istarData;
 	private JScrollPane logScrollPane;
+	private EB2UsData eb2usdata;
 
 	public SwingUserInterface() {
 
@@ -147,35 +151,36 @@ public class SwingUserInterface extends JPanel implements ActionListener {
 	}
 	
 	private void printIstarTitle() {
-		for (int i = 0 ; i < mapping.getIstar_compartments().size() ; i++) {
-			log.append("~ " + mapping.getIstar_compartments().get(i).getType() + ": " + mapping.getIstar_compartments().get(i).getName() + newline);
+		for (int i = 0 ; i < istarData.getIstar_compartments().size() ; i++) {
+			log.append("~ " + istarData.getIstar_compartments().get(i).getType() + ": " + istarData.getIstar_compartments().get(i).getName() + newline);
 		}
 	}
 	
 	private void printIstarElements() {
-		for (int i = 0 ; i < mapping.getIstar_elements().size() ; i++) {
-			log.append("~ " + mapping.getIstar_elements().get(i).getType() + ": " + mapping.getIstar_elements().get(i).getName() + newline);
+		for (int i = 0 ; i < istarData.getIstar_elements().size() ; i++) {
+			log.append("~ " + istarData.getIstar_elements().get(i).getType() + ": " + istarData.getIstar_elements().get(i).getName() + newline);
 		}
 	}
 	
 	private void printIstarActorLinks() {
-		for (int i = 0 ; i < mapping.getIstar_actorLinks().size() ; i++) {
-			log.append("~ " + mapping.getIstar_actorLinks().get(i).getType() + ": " + mapping.getIstar_actorLinks().get(i).getSource().getName() + " -> " + mapping.getIstar_actorLinks().get(i).getTarget().getName() + newline);
+		for (int i = 0 ; i < istarData.getIstar_actorLinks().size() ; i++) {
+			log.append("~ " + istarData.getIstar_actorLinks().get(i).getType() + ": " + istarData.getIstar_actorLinks().get(i).getSource().getName() + " -> " + istarData.getIstar_actorLinks().get(i).getTarget().getName() + newline);
 		}
 	}
 	
 	private void printIstarDependencyLinks() {
-		for (int i = 0 ; i < mapping.getIstar_dependencyLinks().size() ; i++) {
-			log.append("~ " + mapping.getIstar_dependencyLinks().get(i).getType() + ": " + mapping.getIstar_dependencyLinks().get(i).getSource().getName() + " -> " + mapping.getIstar_dependencyLinks().get(i).getTarget().getName() + newline);
+		for (int i = 0 ; i < istarData.getIstar_dependencyLinks().size() ; i++) {
+			log.append("~ " + istarData.getIstar_dependencyLinks().get(i).getType() + ": " + istarData.getIstar_dependencyLinks().get(i).getSource().getName() + " -> " + istarData.getIstar_dependencyLinks().get(i).getTarget().getName() + newline);
 		}
 	}
 
 	private void toStarButton() {
 
 		saveButton.setEnabled(true);
-		this.mapping = new IstarData(usData);
+		this.us2star_data = new UsData2IstarData(usData);
+		this.istarData = us2star_data.getIstarData();
 		log.append("- Mapping " + getCurrentFile().getName() + " that contains user stories, to i* model..." + newline);
-		log.append("~~~~~~~~ i* Model: " + mapping.getIstar_model().getTitle() + " ~~~~~~~~" + newline);
+		log.append("~~~~~~~~ i* Model: " + istarData.getIstar_model().getTitle() + " ~~~~~~~~" + newline);
 		printIstarTitle();
 		printIstarElements();
 		printIstarActorLinks();
@@ -214,8 +219,9 @@ public class SwingUserInterface extends JPanel implements ActionListener {
 					deleteFileButton.setEnabled(true);
 					currentFileName.setForeground(new Color(35, 142, 35));
 					currentFileName.setText(file.getName());
-					setCurrentFile(file);				
-					usData = new UsData(file.getPath());
+					setCurrentFile(file);	
+					eb2usdata = new EB2UsData(file.getPath());
+					usData = eb2usdata.getUsData();
 					printUs();
 				}
 			} 
@@ -238,7 +244,7 @@ public class SwingUserInterface extends JPanel implements ActionListener {
 
 	private void saveButton() throws ParserConfigurationException, TransformerException {
 
-		xmiCreater = new CreateIstarXMI(mapping, currentFile.getAbsolutePath());
+		xmiCreater = new CreateIstarXMI(istarData, currentFile.getAbsolutePath());
 		log.append("~ File saved: " + newline);
 	}
 

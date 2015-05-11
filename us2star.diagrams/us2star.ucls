@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.8" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="true" nesting-relationships="true">  
-  <class id="1" language="java" name="br.com.us2star.mapping.command.AbstractMappingCommand" project="us2star" 
-    file="/us2star/src/br/com/us2star/mapping/command/AbstractMappingCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="1" language="java" name="br.com.us2star.mapping.istar.AbstractMappingCommand" project="us2star" 
+    file="/us2star/src/br/com/us2star/mapping/istar/AbstractMappingCommand.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="332" y="134"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -10,8 +10,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="br.com.us2star.mapping.command.Action2TaskCommand" project="us2star" 
-    file="/us2star/src/br/com/us2star/mapping/command/Action2TaskCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="br.com.us2star.mapping.istar.Action2TaskCommand" project="us2star" 
+    file="/us2star/src/br/com/us2star/mapping/istar/Action2TaskCommand.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="17" y="262"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -19,9 +19,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="br.com.us2star.mapping.command.ConnectDependencyActorGoalCommand" 
-    project="us2star" file="/us2star/src/br/com/us2star/mapping/command/ConnectDependencyActorGoalCommand.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="3" language="java" name="br.com.us2star.mapping.istar.ConnectDependencyActorGoalCommand" project="us2star" 
+    file="/us2star/src/br/com/us2star/mapping/istar/ConnectDependencyActorGoalCommand.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="126" y="418"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -29,8 +29,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="br.com.us2star.mapping.command.ConnectDependencyGoalTaskCommand" project="us2star" 
-    file="/us2star/src/br/com/us2star/mapping/command/ConnectDependencyGoalTaskCommand.java" binary="false" 
+  <class id="4" language="java" name="br.com.us2star.mapping.istar.ConnectDependencyGoalTaskCommand" project="us2star" 
+    file="/us2star/src/br/com/us2star/mapping/istar/ConnectDependencyGoalTaskCommand.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="117" width="307" x="549" y="46"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -39,9 +39,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="br.com.us2star.mapping.command.ConnectLinkActorSystemActorCommand" 
-    project="us2star" file="/us2star/src/br/com/us2star/mapping/command/ConnectLinkActorSystemActorCommand.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="5" language="java" name="br.com.us2star.mapping.istar.ConnectLinkActorSystemActorCommand" project="us2star" 
+    file="/us2star/src/br/com/us2star/mapping/istar/ConnectLinkActorSystemActorCommand.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-13" y="83"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -49,8 +49,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="br.com.us2star.mapping.command.CopyModelNameCommand" project="us2star" 
-    file="/us2star/src/br/com/us2star/mapping/command/CopyModelNameCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="6" language="java" name="br.com.us2star.mapping.istar.CopyModelNameCommand" project="us2star" 
+    file="/us2star/src/br/com/us2star/mapping/istar/CopyModelNameCommand.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="251" y="-48"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -58,9 +58,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="br.com.us2star.mapping.command.CreateSystemActorCommand" project="us2star" 
-    file="/us2star/src/br/com/us2star/mapping/command/CreateSystemActorCommand.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="7" language="java" name="br.com.us2star.mapping.istar.CreateSystemActorCommand" project="us2star" 
+    file="/us2star/src/br/com/us2star/mapping/istar/CreateSystemActorCommand.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="99" width="219" x="611" y="291"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -68,8 +67,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="br.com.us2star.mapping.command.Goal2GoalCommand" project="us2star" 
-    file="/us2star/src/br/com/us2star/mapping/command/Goal2GoalCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="8" language="java" name="br.com.us2star.mapping.istar.Goal2GoalCommand" project="us2star" 
+    file="/us2star/src/br/com/us2star/mapping/istar/Goal2GoalCommand.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="135" width="226" x="461" y="370"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -77,8 +76,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="9" language="java" name="br.com.us2star.mapping.command.IMappingCommand" project="us2star" 
-    file="/us2star/src/br/com/us2star/mapping/command/IMappingCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="9" language="java" name="br.com.us2star.mapping.istar.IMappingCommand" project="us2star" 
+    file="/us2star/src/br/com/us2star/mapping/istar/IMappingCommand.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="367" y="322"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -86,8 +85,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="10" language="java" name="br.com.us2star.mapping.command.IstarData" project="us2star" 
-    file="/us2star/src/br/com/us2star/mapping/command/IstarData.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="10" language="java" name="br.com.us2star.mapping.istar.UsData2IstarData" project="us2star" 
+    file="/us2star/src/br/com/us2star/mapping/istar/UsData2IstarData.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="331" y="784"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -95,8 +94,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="br.com.us2star.mapping.command.Role2ActorCommand" project="us2star" 
-    file="/us2star/src/br/com/us2star/mapping/command/Role2ActorCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="11" language="java" name="br.com.us2star.mapping.istar.Role2ActorCommand" project="us2star" 
+    file="/us2star/src/br/com/us2star/mapping/istar/Role2ActorCommand.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="763" y="681"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      

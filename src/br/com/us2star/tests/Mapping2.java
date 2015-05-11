@@ -11,12 +11,12 @@ import br.com.us2star.istar.IstarElementType;
 import br.com.us2star.istar.IstarFactory;
 import br.com.us2star.istar.IstarModel;
 import br.com.us2star.istar.impl.IstarFactoryImpl;
-import br.com.us2star.mapping.UsData;
+import br.com.us2star.mapping.us.EB2UsData;
 import br.com.us2star.us.UsElementType;
 
 public class Mapping2 {
 
-	private UsData usData;
+	private EB2UsData usData;
 	private IstarFactory istar_factory;
 	private IstarModel istar_model;
 	private ArrayList<IstarCompartment> istar_actors;
@@ -26,7 +26,7 @@ public class Mapping2 {
 	private ArrayList<IstarActorLink> istar_actorLinks;
 	private IstarCompartment systemActor;
 
-	public Mapping2(UsData usData) {
+	public Mapping2(EB2UsData usData) {
 		this.usData = usData;
 		this.istar_factory = new IstarFactoryImpl();
 		this.istar_actors = new ArrayList<IstarCompartment>();

@@ -1,8 +1,9 @@
-package br.com.us2star.mapping.command;
+package br.com.us2star.mapping.istar.command;
 
 import br.com.us2star.istar.IstarCompartment;
 import br.com.us2star.istar.IstarCompartmentType;
-import br.com.us2star.mapping.UsData;
+import br.com.us2star.mapping.istar.IstarData;
+import br.com.us2star.mapping.us.UsData;
 
 public class Role2ActorCommand extends AbstractMappingCommand implements IMappingCommand {
 
