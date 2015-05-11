@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.8" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="true" nesting-relationships="true">  
-  <class id="1" language="java" name="us2star.mapping.AbstractMappingCommand" project="us2star" 
-    file="/us2star/src/us2star/mapping/AbstractMappingCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="1" language="java" name="br.com.us2star.mapping.command.AbstractMappingCommand" project="us2star" 
+    file="/us2star/src/br/com/us2star/mapping/command/AbstractMappingCommand.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="332" y="134"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -10,8 +10,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="us2star.mapping.Action2TaskCommand" project="us2star" 
-    file="/us2star/src/us2star/mapping/Action2TaskCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="br.com.us2star.mapping.command.Action2TaskCommand" project="us2star" 
+    file="/us2star/src/br/com/us2star/mapping/command/Action2TaskCommand.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="17" y="262"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -19,8 +19,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="us2star.mapping.ConnectDependencyActorGoalCommand" project="us2star" 
-    file="/us2star/src/us2star/mapping/ConnectDependencyActorGoalCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="3" language="java" name="br.com.us2star.mapping.command.ConnectDependencyActorGoalCommand" 
+    project="us2star" file="/us2star/src/br/com/us2star/mapping/command/ConnectDependencyActorGoalCommand.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="126" y="418"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -28,8 +29,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="us2star.mapping.ConnectDependencyGoalTaskCommand" project="us2star" 
-    file="/us2star/src/us2star/mapping/ConnectDependencyGoalTaskCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="br.com.us2star.mapping.command.ConnectDependencyGoalTaskCommand" project="us2star" 
+    file="/us2star/src/br/com/us2star/mapping/command/ConnectDependencyGoalTaskCommand.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="117" width="307" x="549" y="46"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -37,8 +39,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="us2star.mapping.ConnectLinkActorSystemActorCommand" project="us2star" 
-    file="/us2star/src/us2star/mapping/ConnectLinkActorSystemActorCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="5" language="java" name="br.com.us2star.mapping.command.ConnectLinkActorSystemActorCommand" 
+    project="us2star" file="/us2star/src/br/com/us2star/mapping/command/ConnectLinkActorSystemActorCommand.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-13" y="83"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -46,8 +49,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="us2star.mapping.CopyModelNameCommand" project="us2star" 
-    file="/us2star/src/us2star/mapping/CopyModelNameCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="6" language="java" name="br.com.us2star.mapping.command.CopyModelNameCommand" project="us2star" 
+    file="/us2star/src/br/com/us2star/mapping/command/CopyModelNameCommand.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="251" y="-48"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -55,8 +58,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="us2star.mapping.CreateSystemActorCommand" project="us2star" 
-    file="/us2star/src/us2star/mapping/CreateSystemActorCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="7" language="java" name="br.com.us2star.mapping.command.CreateSystemActorCommand" project="us2star" 
+    file="/us2star/src/br/com/us2star/mapping/command/CreateSystemActorCommand.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="99" width="219" x="611" y="291"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -64,8 +68,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="us2star.mapping.Goal2GoalCommand" project="us2star" 
-    file="/us2star/src/us2star/mapping/Goal2GoalCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="8" language="java" name="br.com.us2star.mapping.command.Goal2GoalCommand" project="us2star" 
+    file="/us2star/src/br/com/us2star/mapping/command/Goal2GoalCommand.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="135" width="226" x="461" y="370"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -73,8 +77,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="9" language="java" name="us2star.mapping.IMappingCommand" project="us2star" 
-    file="/us2star/src/us2star/mapping/IMappingCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="9" language="java" name="br.com.us2star.mapping.command.IMappingCommand" project="us2star" 
+    file="/us2star/src/br/com/us2star/mapping/command/IMappingCommand.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="367" y="322"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -82,8 +86,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="10" language="java" name="us2star.mapping.IstarData" project="us2star" 
-    file="/us2star/src/us2star/mapping/IstarData.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="10" language="java" name="br.com.us2star.mapping.command.IstarData" project="us2star" 
+    file="/us2star/src/br/com/us2star/mapping/command/IstarData.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="331" y="784"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -91,8 +95,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="us2star.mapping.Role2ActorCommand" project="us2star" 
-    file="/us2star/src/us2star/mapping/Role2ActorCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="11" language="java" name="br.com.us2star.mapping.command.Role2ActorCommand" project="us2star" 
+    file="/us2star/src/br/com/us2star/mapping/command/Role2ActorCommand.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="763" y="681"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -100,118 +104,126 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <dependency id="12">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <realization id="13">    
-    <end type="SOURCE" refId="7"/>    
+  <realization id="12">    
+    <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="9"/>  
   </realization>  
-  <dependency id="14">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="6"/>  
-  </dependency>  
-  <realization id="15">    
+  <generalization id="13">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <realization id="14">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="9"/>  
   </realization>  
+  <realization id="15">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
   <generalization id="16">    
-    <end type="SOURCE" refId="2"/>    
+    <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
   <dependency id="17">    
     <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="7"/>  
+    <end type="TARGET" refId="5"/>  
   </dependency>  
-  <generalization id="18">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
-  <dependency id="19">    
+  <dependency id="18">    
     <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="2"/>  
+    <end type="TARGET" refId="8"/>  
   </dependency>  
-  <realization id="20">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="9"/>  
-  </realization>  
-  <realization id="21">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="9"/>  
-  </realization>  
-  <generalization id="22">    
+  <generalization id="19">    
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
-  <generalization id="23">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
+  <dependency id="20">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <association id="21">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="22" name="mapping">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="23" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <generalization id="24">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
   <dependency id="25">    
     <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="5"/>  
+    <end type="TARGET" refId="4"/>  
   </dependency>  
   <dependency id="26">    
     <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="10"/>  
   </dependency>  
-  <generalization id="27">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
-  <realization id="28">    
-    <end type="SOURCE" refId="4"/>    
+  <realization id="27">    
+    <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="9"/>  
   </realization>  
+  <dependency id="28">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
   <association id="29">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="30" name="istarData"/>      
-      <multiplicity id="31" minimum="0" maximum="1"/>    
+      <attribute id="30" name="istarData">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="31" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <realization id="32">    
-    <end type="SOURCE" refId="11"/>    
+    <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="9"/>  
   </realization>  
   <dependency id="33">    
     <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="8"/>  
+    <end type="TARGET" refId="6"/>  
   </dependency>  
-  <dependency id="34">    
+  <generalization id="34">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="35">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <dependency id="36">    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
-  <association id="35">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="36" name="mapping"/>      
-      <multiplicity id="37" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="38">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="9"/>  
-  </realization>  
-  <generalization id="39">    
+  <generalization id="37">    
     <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
-  <generalization id="40">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
-  <realization id="41">    
-    <end type="SOURCE" refId="5"/>    
+  <realization id="38">    
+    <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="9"/>  
   </realization>  
+  <realization id="39">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <realization id="40">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <generalization id="41">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

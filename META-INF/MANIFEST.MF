@@ -7,9 +7,9 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: us,
- us.impl,
- us.util
+Export-Package: br.com.us2star.us,
+ br.com.us2star.us.impl,
+ br.com.us2star.us.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy

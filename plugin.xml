@@ -10,7 +10,7 @@
       <!-- @generated US -->
       <package
             uri="UsModel"
-            class="us.UsPackage"/>
+            class="br.com.us2star.us.UsPackage"/>
    </extension>
 
 </plugin>
