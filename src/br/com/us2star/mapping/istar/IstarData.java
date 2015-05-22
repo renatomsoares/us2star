@@ -33,43 +33,56 @@ public class IstarData {
 	public IstarFactory getIstar_factory() {
 		return istar_factory;
 	}
+	
 	public void setIstar_factory(IstarFactory istar_factory) {
 		this.istar_factory = istar_factory;
 	}
+	
 	public IstarModel getIstar_model() {
 		return istar_model;
 	}
+	
 	public void setIstar_model(IstarModel istar_model) {
 		this.istar_model = istar_model;
 	}
+	
 	public IstarPackage getIstar_package() {
 		return istar_package;
 	}
+	
 	public void setIstar_package(IstarPackage istar_package) {
 		this.istar_package = istar_package;
 	}
+	
 	public ArrayList<IstarCompartment> getIstar_compartments() {
 		return istar_compartments;
 	}
+	
 	public void setIstar_compartments(ArrayList<IstarCompartment> istar_compartments) {
 		this.istar_compartments = istar_compartments;
 	}
+	
 	public ArrayList<IstarElement> getIstar_elements() {
 		return istar_elements;
 	}
+	
 	public void setIstar_elements(ArrayList<IstarElement> istar_elements) {
 		this.istar_elements = istar_elements;
 	}
+	
 	public ArrayList<IstarDependencyLink> getIstar_dependencyLinks() {
 		return istar_dependencyLinks;
 	}
+	
 	public void setIstar_dependencyLinks(
 			ArrayList<IstarDependencyLink> istar_dependencyLinks) {
 		this.istar_dependencyLinks = istar_dependencyLinks;
 	}
+	
 	public ArrayList<IstarActorLink> getIstar_actorLinks() {
 		return istar_actorLinks;
 	}
+	
 	public void setIstar_actorLinks(ArrayList<IstarActorLink> istar_actorLinks) {
 		this.istar_actorLinks = istar_actorLinks;
 	}
@@ -101,6 +114,38 @@ public class IstarData {
 		for (int i = 0 ; i < getIstar_actorLinks().size() ; i++) {
 			if ((getIstar_actorLinks().get(i).getSource().getName().equals(actorSource)) &&
 					(getIstar_actorLinks().get(i).getTarget().getName().equals(actorTarget))){
+				exists = true;
+			}
+		}
+		return exists;
+	}
+	
+	public boolean actorExists(String actorName) {
+		boolean exists = false;
+		for (int i = 0 ; i < getIstar_compartments().size() ; i++) {
+			if (getIstar_compartments().get(i).getName().equals(actorName)) {
+				exists = true;
+			}
+		}
+		return exists;
+	}
+	
+	public boolean dependencyLinkExists(String source, String target) {
+		boolean exists = false;
+		for (int i = 0 ; i < getIstar_dependencyLinks().size() ; i++) {
+			if ((getIstar_dependencyLinks().get(i).getSource().getName().equals(source)) &&
+					(getIstar_dependencyLinks().get(i).getTarget().getName().equals(target))){
+				exists = true;
+			}
+		}
+		return exists;
+	}
+	
+	public boolean goalExists(String goalName) {
+		boolean exists = false;
+
+		for (int i = 0 ; i < getIstar_elements().size() ; i++) {
+			if (getIstar_elements().get(i).getName().equals(goalName)) {
 				exists = true;
 			}
 		}

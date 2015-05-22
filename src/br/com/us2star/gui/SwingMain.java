@@ -6,7 +6,7 @@ public class SwingMain {
 
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				SwingUserInterface.createAndShowGUI();
+				SwingUI.createAndShowGUI();
 			}
 		});
 	}

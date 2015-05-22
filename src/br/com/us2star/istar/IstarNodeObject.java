@@ -46,5 +46,8 @@ public interface IstarNodeObject extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+	
+	void setId(int id);
+	int getId();
 
 } // IstarNodeObject

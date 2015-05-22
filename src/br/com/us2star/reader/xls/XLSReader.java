@@ -17,17 +17,11 @@ public class XLSReader {
 	private ArrayList<String> userStories;
 	private String backlogName;
 
-	public XLSReader(String path) {
-
-		try {
-			this.file = new FileInputStream(new File(path));
-			this.workbook = new HSSFWorkbook(file);
-		} catch (IOException e) {
-			System.out.println("Provavelmente o arquivo exportado pela EB está protegido.");
-			e.printStackTrace();
-		}
+	public XLSReader(String path) throws IOException {
 
 
+		this.file = new FileInputStream(new File(path));
+		this.workbook = new HSSFWorkbook(file);
 		this.sheet = workbook.getSheetAt(0);
 		this.userStories = new ArrayList<String>();
 
@@ -85,7 +79,7 @@ public class XLSReader {
 
 		return isEb;
 	}
-	
+
 	public static boolean isXls(File file){
 		String fileName = file.getName();
 		String ext[] = fileName.split("\\.");

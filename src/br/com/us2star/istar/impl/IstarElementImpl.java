@@ -49,6 +49,8 @@ public class IstarElementImpl extends IstarIntentionalElementImpl implements Ist
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+
+	
 	protected IstarElementImpl() {
 		super();
 	}
@@ -157,5 +159,6 @@ public class IstarElementImpl extends IstarIntentionalElementImpl implements Ist
 		result.append(')');
 		return result.toString();
 	}
+
 
 } //IstarElementImpl

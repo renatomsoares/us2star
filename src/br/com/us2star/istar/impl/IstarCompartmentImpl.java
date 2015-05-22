@@ -47,6 +47,7 @@ public class IstarCompartmentImpl extends IstarNodeObjectImpl implements IstarCo
 	 * @generated
 	 * @ordered
 	 */
+	
 	protected static final IstarCompartmentType TYPE_EDEFAULT = IstarCompartmentType.ACTOR;
 
 	/**
@@ -104,6 +105,7 @@ public class IstarCompartmentImpl extends IstarNodeObjectImpl implements IstarCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	
 	protected IstarCompartmentImpl() {
 		super();
 	}

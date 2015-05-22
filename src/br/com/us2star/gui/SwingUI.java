@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -29,7 +30,7 @@ import br.com.us2star.reader.xls.XLSReader;
 import br.com.us2star.us.UsElementType;
 import br.com.us2star.writer.xmi.CreateIstarXMI;
 
-public class SwingUserInterface extends JPanel implements ActionListener {
+public class SwingUI extends JPanel implements ActionListener {
 
 	private final String newline = "\n";
 	private JTextArea log;
@@ -52,7 +53,7 @@ public class SwingUserInterface extends JPanel implements ActionListener {
 	private JScrollPane logScrollPane;
 	private EB2UsData eb2usdata;
 
-	public SwingUserInterface() {
+	public SwingUI() {
 
 		super(new BorderLayout());
 
@@ -152,7 +153,7 @@ public class SwingUserInterface extends JPanel implements ActionListener {
 	
 	private void printIstarTitle() {
 		for (int i = 0 ; i < istarData.getIstar_compartments().size() ; i++) {
-			log.append("~ " + istarData.getIstar_compartments().get(i).getType() + ": " + istarData.getIstar_compartments().get(i).getName() + newline);
+			log.append("~ " + istarData.getIstar_compartments().get(i).getType() + ": " + istarData.getIstar_compartments().get(i).getId() + newline);
 		}
 	}
 	
@@ -170,7 +171,7 @@ public class SwingUserInterface extends JPanel implements ActionListener {
 	
 	private void printIstarDependencyLinks() {
 		for (int i = 0 ; i < istarData.getIstar_dependencyLinks().size() ; i++) {
-			log.append("~ " + istarData.getIstar_dependencyLinks().get(i).getType() + ": " + istarData.getIstar_dependencyLinks().get(i).getSource().getName() + " -> " + istarData.getIstar_dependencyLinks().get(i).getTarget().getName() + newline);
+			//log.append("~ " + istarData.getIstar_dependencyLinks().get(i).getType() + ": " + istarData.getIstar_dependencyLinks().get(i).getSource().getName() + " -> " + istarData.getIstar_dependencyLinks().get(i).getTarget().getName() + newline);
 		}
 	}
 
@@ -189,22 +190,17 @@ public class SwingUserInterface extends JPanel implements ActionListener {
 	}
 	
 	private void printUs() {
-		for (int i = 0 ; i < usData.getUs_elements().size() ; i++) {
-
-			if (usData.getUs_elements().get(i).getType() == UsElementType.ROLE) {
-				log.append("- User Story" + newline);
-				log.append("     Role: " + usData.getUs_elements().get(i).getDescription() + newline);
-			} else if (usData.getUs_elements().get(i).getType() == UsElementType.ACTION) {
-				log.append("     Action: " + usData.getUs_elements().get(i).getDescription() + newline);
-			} else if (usData.getUs_elements().get(i).getType() == UsElementType.GOAL) {
-				log.append("     Goal: " + usData.getUs_elements().get(i).getDescription() + newline);
-			}
+		for (int i = 0 ; i < usData.getUs_model().getUss().size() ; i++) {
+			log.append("ID: " + usData.getUs_model().getUss().get(i).getId() + newline);
+			log.append("Role: " + usData.getUs_model().getUss().get(i).getElements().get(0).getDescription() + newline);
+			log.append("Action: " + usData.getUs_model().getUss().get(i).getElements().get(1).getDescription() + newline);
+			log.append("Goal: " + usData.getUs_model().getUss().get(i).getElements().get(2).getDescription() + newline);
 		}
 	}
 
 	private void openButton() {
 
-		int returnVal = fc.showOpenDialog(SwingUserInterface.this);
+		int returnVal = fc.showOpenDialog(SwingUI.this);
 
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			File file = fc.getSelectedFile();
@@ -220,7 +216,12 @@ public class SwingUserInterface extends JPanel implements ActionListener {
 					currentFileName.setForeground(new Color(35, 142, 35));
 					currentFileName.setText(file.getName());
 					setCurrentFile(file);	
-					eb2usdata = new EB2UsData(file.getPath());
+					try {
+						eb2usdata = new EB2UsData(file.getPath());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					usData = eb2usdata.getUsData();
 					printUs();
 				}
@@ -274,7 +275,7 @@ public class SwingUserInterface extends JPanel implements ActionListener {
 	}
 
 	protected static ImageIcon createImageIcon(String path) {
-		java.net.URL imgURL = SwingUserInterface.class.getResource(path);
+		java.net.URL imgURL = SwingUI.class.getResource(path);
 		if (imgURL != null) {
 			return new ImageIcon(imgURL);
 		} else {
@@ -300,7 +301,16 @@ public class SwingUserInterface extends JPanel implements ActionListener {
 	}
 
 	private boolean isEb(String path) {
-		XLSReader reader = new XLSReader(path);
+		XLSReader reader = null;
+		try {
+			reader = new XLSReader(path);
+		} catch (IOException e) {
+			log.append("- ERROR: Probably the XLS file exported by EB is protected.");
+			log.append("- SUGGESTION: Open the file and save informing the file type 'XML Spreadsheet 2003'");
+
+			System.out.println("asasa");
+			e.printStackTrace();
+		}
 		if (!reader.isEb()) {
 			log.append("- ERROR: The xls file <" + currentFile.getName() + "> wasn't exported from Easybacklog." + newline);
 		}
@@ -322,7 +332,7 @@ public class SwingUserInterface extends JPanel implements ActionListener {
 		JDialog.setDefaultLookAndFeelDecorated(true);
 		JFrame frame = new JFrame("US2Star - User Stories To Star");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JComponent newContentPane = new SwingUserInterface();
+		JComponent newContentPane = new SwingUI();
 		newContentPane.setOpaque(true);
 		frame.setContentPane(newContentPane);
 		//log.append("- Welcome to US2Star!"+ newline);

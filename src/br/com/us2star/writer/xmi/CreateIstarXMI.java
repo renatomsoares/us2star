@@ -12,16 +12,11 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 
-
-
-
-
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import br.com.us2star.mapping.istar.IstarData;
-import br.com.us2star.mapping.istar.UsData2IstarData;
 
 public class CreateIstarXMI {
 
@@ -39,7 +34,6 @@ public class CreateIstarXMI {
 		this.doc = docBuilder.newDocument();
 		this.pathToSave = pathToSave;
 
-
 		writeXmiElements();
 		writeContentIntoXmiFile();
 	}
@@ -52,6 +46,8 @@ public class CreateIstarXMI {
 	}
 
 	private void createRootElement() {
+		
+		System.out.println("IstarModel:IstarModel");
 		this.rootElement = doc.createElement("IstarModel:IstarModel");
 		doc.appendChild(rootElement);
 	}

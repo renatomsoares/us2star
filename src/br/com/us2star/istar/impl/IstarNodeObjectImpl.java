@@ -43,6 +43,8 @@ public class IstarNodeObjectImpl extends EObjectImpl implements IstarNodeObject 
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+	
+	protected int id;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -156,6 +158,14 @@ public class IstarNodeObjectImpl extends EObjectImpl implements IstarNodeObject 
 		result.append(name);
 		result.append(')');
 		return result.toString();
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 } //IstarNodeObjectImpl

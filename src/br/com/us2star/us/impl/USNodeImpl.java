@@ -38,6 +38,7 @@ public class USNodeImpl extends UsPartImpl implements USNode {
 	 * @ordered
 	 */
 	protected EList<UsElement> elements;
+	private int id;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -142,6 +143,14 @@ public class USNodeImpl extends UsPartImpl implements USNode {
 				return elements != null && !elements.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 } //USNodeImpl
