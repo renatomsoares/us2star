@@ -152,26 +152,36 @@ public class SwingUI extends JPanel implements ActionListener {
 	}
 	
 	private void printIstarTitle() {
-		for (int i = 0 ; i < istarData.getIstar_compartments().size() ; i++) {
-			log.append("~ " + istarData.getIstar_compartments().get(i).getType() + ": " + istarData.getIstar_compartments().get(i).getId() + newline);
+			log.append("~ " + istarData.getIstar_model().getTitle() + newline);
+	}
+	
+	private void printIstarCompartments() {
+		for (int i = 0 ; i < istarData.getIstar_model().getCompartments().size() ; i++) {
+			log.append("~ " + istarData.getIstar_model().getCompartments().get(i).getType() + ": " + istarData.getIstar_model().getCompartments().get(i).getName() + newline);
 		}
 	}
 	
 	private void printIstarElements() {
-		for (int i = 0 ; i < istarData.getIstar_elements().size() ; i++) {
-			log.append("~ " + istarData.getIstar_elements().get(i).getType() + ": " + istarData.getIstar_elements().get(i).getName() + newline);
+		for (int i = 0 ; i < istarData.getIstar_model().getElements().size() ; i++) {
+			log.append("~ " + istarData.getIstar_model().getElements().get(i).getType() + ": " + istarData.getIstar_model().getElements().get(i).getName() + newline);
+		}
+	}
+	
+	private void printIstarElementsFromSystemActor() {
+		for (int i = 0 ; i < istarData.getIstar_model().getCompartments().get(0).getElements().size() ; i++) {
+			log.append("~ [SystemActor] " + istarData.getIstar_model().getCompartments().get(0).getElements().get(i).getType() + ": " + istarData.getIstar_model().getCompartments().get(0).getElements().get(i).getName() + newline);
 		}
 	}
 	
 	private void printIstarActorLinks() {
-		for (int i = 0 ; i < istarData.getIstar_actorLinks().size() ; i++) {
-			log.append("~ " + istarData.getIstar_actorLinks().get(i).getType() + ": " + istarData.getIstar_actorLinks().get(i).getSource().getName() + " -> " + istarData.getIstar_actorLinks().get(i).getTarget().getName() + newline);
+		for (int i = 0 ; i < istarData.getIstar_model().getActorLinks().size() ; i++) {
+			log.append("~ " + istarData.getIstar_model().getActorLinks().get(i).getType() + ": " + istarData.getIstar_model().getActorLinks().get(i).getSource().getName() + " -> " + istarData.getIstar_model().getActorLinks().get(i).getTarget().getName() + newline);
 		}
 	}
 	
 	private void printIstarDependencyLinks() {
-		for (int i = 0 ; i < istarData.getIstar_dependencyLinks().size() ; i++) {
-			//log.append("~ " + istarData.getIstar_dependencyLinks().get(i).getType() + ": " + istarData.getIstar_dependencyLinks().get(i).getSource().getName() + " -> " + istarData.getIstar_dependencyLinks().get(i).getTarget().getName() + newline);
+		for (int i = 0 ; i < istarData.getIstar_model().getDependencyLinks().size() ; i++) {
+			log.append("~ " + istarData.getIstar_model().getDependencyLinks().get(i).getType() + ": " + istarData.getIstar_model().getDependencyLinks().get(i).getSource().getName() + " -> " + istarData.getIstar_model().getDependencyLinks().get(i).getTarget().getName() + newline);
 		}
 	}
 
@@ -181,9 +191,13 @@ public class SwingUI extends JPanel implements ActionListener {
 		this.us2star_data = new UsData2IstarData(usData);
 		this.istarData = us2star_data.getIstarData();
 		log.append("- Mapping " + getCurrentFile().getName() + " that contains user stories, to i* model..." + newline);
+		
 		log.append("~~~~~~~~ i* Model: " + istarData.getIstar_model().getTitle() + " ~~~~~~~~" + newline);
+		
 		printIstarTitle();
+		printIstarCompartments();
 		printIstarElements();
+		printIstarElementsFromSystemActor();
 		printIstarActorLinks();
 		printIstarDependencyLinks();
 		log.setCaretPosition(log.getDocument().getLength());

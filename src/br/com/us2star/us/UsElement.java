@@ -48,5 +48,6 @@ public interface UsElement extends UsPart {
 	 * @generated
 	 */
 	void setType(UsElementType value);
+	
 
 } // UsElement

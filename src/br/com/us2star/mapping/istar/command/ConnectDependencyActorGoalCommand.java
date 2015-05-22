@@ -21,12 +21,12 @@ public class ConnectDependencyActorGoalCommand extends AbstractMappingCommand im
 		for (int i = 0 ; i < usData.getUsList().size() ; i++) {
 
 			IstarCompartment actor = getIstarData().searchActor(usData.getUsList().get(i).getElements().get(0).getDescription());
-			IstarElement goal = getIstarData().searchTaskOrGoal(usData.getUsList().get(i).getElements().get(2).getDescription());
+			IstarElement goal = getIstarData().searchGoal(usData.getUsList().get(i).getElements().get(2).getDescription());
 			IstarDependencyLink new_dependencyLink = getIstarData().getIstar_factory().createIstarDependencyLink();
 			new_dependencyLink.setSource(actor);
 			new_dependencyLink.setTarget(goal);
 			//setar tipo de dependência
-			getIstarData().getIstar_dependencyLinks().add(new_dependencyLink);
+			getIstarData().getIstar_model().getDependencyLinks().add(new_dependencyLink);
 		}
 
 		return true;

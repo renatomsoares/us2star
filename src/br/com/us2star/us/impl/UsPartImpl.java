@@ -43,6 +43,7 @@ public class UsPartImpl extends EObjectImpl implements UsPart {
 	 * @ordered
 	 */
 	protected String description = DESCRIPTION_EDEFAULT;
+	protected int id;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -71,6 +72,10 @@ public class UsPartImpl extends EObjectImpl implements UsPart {
 	public String getDescription() {
 		return description;
 	}
+	
+	public int getId() {
+		return id;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -82,6 +87,10 @@ public class UsPartImpl extends EObjectImpl implements UsPart {
 		description = newDescription;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UsPackage.US_PART__DESCRIPTION, oldDescription, description));
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	/**

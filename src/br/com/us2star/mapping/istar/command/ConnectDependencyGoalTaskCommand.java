@@ -18,13 +18,16 @@ public class ConnectDependencyGoalTaskCommand extends AbstractMappingCommand imp
 	@Override
 	public Object execute() {
 		for (int i = 0 ; i < usData.getUsList().size() ; i++) {
-			IstarElement goal = getIstarData().searchTaskOrGoal(usData.getUsList().get(i).getElements().get(2).getDescription());
-			IstarElement task = getIstarData().searchTaskOrGoal(usData.getUsList().get(i).getElements().get(1).getDescription());
+			
+			IstarElement goal = getIstarData().searchGoal(usData.getUsList().get(i).getElements().get(2).getDescription());
+			IstarElement task = getIstarData().searchTask(usData.getUsList().get(i).getElements().get(1).getDescription());
+			
+			
 			IstarDependencyLink new_dependencyLink = getIstarData().getIstar_factory().createIstarDependencyLink();
 			new_dependencyLink.setSource(goal);
 			new_dependencyLink.setTarget(task);
-			//setar tipo de dependência
-			getIstarData().getIstar_dependencyLinks().add(new_dependencyLink);
+
+			getIstarData().getIstar_model().getDependencyLinks().add(new_dependencyLink);
 		}
 
 		return true;

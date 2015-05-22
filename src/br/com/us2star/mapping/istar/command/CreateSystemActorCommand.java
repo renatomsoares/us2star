@@ -15,7 +15,9 @@ public class CreateSystemActorCommand extends AbstractMappingCommand implements 
 		IstarCompartment systemactor = getIstarData().getIstar_factory().createIstarCompartment();
 		systemactor.setName("SystemActor");
 		systemactor.setType(IstarCompartmentType.ACTOR);
-		getIstarData().getIstar_compartments().add(systemactor);
+		systemactor.setId(0);
+		getIstarData().getIstar_model().getCompartments().add(0, systemactor);
+		//getIstarData().getIstar_compartments().add(systemactor);
 		return true;
 	}
 }

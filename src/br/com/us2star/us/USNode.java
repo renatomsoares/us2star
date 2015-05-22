@@ -36,7 +36,5 @@ public interface USNode extends UsPart {
 	 * @generated
 	 */
 	EList<UsElement> getElements();
-	int getId();
-	void setId(int id);
 
 } // USNode

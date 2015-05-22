@@ -18,6 +18,7 @@ public class ConnectLinkActorSystemActorCommand extends AbstractMappingCommand i
 	@Override
 	public Object execute() {
 		for (int i = 0 ; i < usData.getUsList().size() ; i++) {
+
 			IstarCompartment actor = getIstarData().searchActor(usData.getUsList().get(i).getElements().get(0).getDescription());
 			if (!getIstarData().actorLinkExists(actor.getName(), "SystemActor")) {
 				IstarCompartment systemActor = getIstarData().searchActor("SystemActor");
@@ -25,10 +26,9 @@ public class ConnectLinkActorSystemActorCommand extends AbstractMappingCommand i
 				new_actorLink.setSource(actor);
 				new_actorLink.setTarget(systemActor);
 				//setar tipo de link
-				getIstarData().getIstar_actorLinks().add(new_actorLink);
+				getIstarData().getIstar_model().getActorLinks().add(new_actorLink);
 			}
 		}
-
 		return true;
 	}
 

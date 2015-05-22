@@ -36,6 +36,8 @@ public interface UsPart extends EObject {
 	 * @generated
 	 */
 	String getDescription();
+	
+	int getId();
 
 	/**
 	 * Sets the value of the '{@link br.com.us2star.us.UsPart#getDescription <em>Description</em>}' attribute.
@@ -46,5 +48,7 @@ public interface UsPart extends EObject {
 	 * @generated
 	 */
 	void setDescription(String value);
+	
+	void setId(int id);
 
 } // UsPart

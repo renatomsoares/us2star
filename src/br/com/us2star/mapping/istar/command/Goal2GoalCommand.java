@@ -15,11 +15,12 @@ public class Goal2GoalCommand extends AbstractMappingCommand implements IMapping
 	}
 	
 	@Override
-	public Object execute() {
+	public Object execute() {		
 		IstarElement new_element = getIstarData().getIstar_factory().createIstarElement();
 		new_element.setName(this.usElement.getDescription());
+		new_element.setId(this.usElement.getId());
 		new_element.setType(IstarElementType.GOAL);
-		getIstarData().getIstar_elements().add(new_element);
+		getIstarData().getIstar_model().getElements().add(new_element);
 		return true;
 	}
 
