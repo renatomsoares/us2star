@@ -53,7 +53,7 @@ public class CreateIstarXMI {
 	}
 
 	private void createDependencyLinks() {
-		for (int i = 0 ; i < isData.getIstar_dependencyLinks().size() ; i++) {
+		for (int i = 0 ; i < isData.getIstar_model().getDependencyLinks().size() ; i++) {
 			Element staff = doc.createElement("dependencyLinks");
 			rootElement.appendChild(staff);
 
@@ -69,15 +69,15 @@ public class CreateIstarXMI {
 	}
 
 	private void createElements() {
-		for (int i = 0 ; i < isData.getIstar_elements().size() ; i++) {
+		for (int i = 0 ; i < isData.getIstar_model().getElements().size() ; i++) {
 			Element staff = doc.createElement("elements");
 			rootElement.appendChild(staff);
 
 			Attr name = doc.createAttribute("name");
-			name.setValue(isData.getIstar_elements().get(i).getName());
+			name.setValue(isData.getIstar_model().getElements().get(i).getName());
 
 			Attr type = doc.createAttribute("type");
-			type.setValue(isData.getIstar_elements().get(i).getType().getName());
+			type.setValue(isData.getIstar_model().getElements().get(i).getType().getName());
 
 			staff.setAttributeNode(name);
 			staff.setAttributeNode(type);
@@ -85,15 +85,15 @@ public class CreateIstarXMI {
 	}
 
 	private void createCompartments() {
-		for (int i = 0 ; i < isData.getIstar_compartments().size() ; i++) {
+		for (int i = 0 ; i < isData.getIstar_model().getCompartments().size() ; i++) {
 			Element staff = doc.createElement("compartments");
 			rootElement.appendChild(staff);
 
 			Attr name = doc.createAttribute("name");
-			name.setValue(isData.getIstar_compartments().get(i).getName());
+			name.setValue(isData.getIstar_model().getCompartments().get(i).getName());
 
 			Attr type = doc.createAttribute("type");
-			type.setValue(isData.getIstar_compartments().get(i).getType().getName());
+			type.setValue(isData.getIstar_model().getCompartments().get(i).getType().getName());
 
 			staff.setAttributeNode(name);
 			staff.setAttributeNode(type);

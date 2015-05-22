@@ -16,15 +16,6 @@ public class UsData {
 	private UsFactory us_factory;
 	private USModel us_model;
 
-	public USNode getUsById(int id) {
-		for (int i = 0 ; i < us_model.getUss().size() ; i++) {
-			if (us_model.getUss().get(i).getId() == id) {
-				return us_model.getUss().get(i);
-			}
-		}
-		return null;
-	}
-	
 	public UsData() {
 
 		this.us_factory = new UsFactoryImpl();
@@ -50,6 +41,13 @@ public class UsData {
 		this.us_model = us_model;
 	}
 	
-	
+	public USNode getUsById(int id) {
+		for (int i = 0 ; i < us_model.getUss().size() ; i++) {
+			if (us_model.getUss().get(i).getId() == id) {
+				return us_model.getUss().get(i);
+			}
+		}
+		return null;
+	}	
 
 }

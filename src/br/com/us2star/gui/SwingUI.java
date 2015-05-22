@@ -157,13 +157,13 @@ public class SwingUI extends JPanel implements ActionListener {
 	
 	private void printIstarCompartments() {
 		for (int i = 0 ; i < istarData.getIstar_model().getCompartments().size() ; i++) {
-			log.append("~ " + istarData.getIstar_model().getCompartments().get(i).getType() + ": " + istarData.getIstar_model().getCompartments().get(i).getName() + newline);
+			log.append("~ " + istarData.getIstar_model().getCompartments().get(i).getId() + " " + istarData.getIstar_model().getCompartments().get(i).getType() + ": " + istarData.getIstar_model().getCompartments().get(i).getName() + newline);
 		}
 	}
 	
 	private void printIstarElements() {
 		for (int i = 0 ; i < istarData.getIstar_model().getElements().size() ; i++) {
-			log.append("~ " + istarData.getIstar_model().getElements().get(i).getType() + ": " + istarData.getIstar_model().getElements().get(i).getName() + newline);
+			log.append("~ " + istarData.getIstar_model().getElements().get(i).getId() + " " + istarData.getIstar_model().getElements().get(i).getType() + ": " + istarData.getIstar_model().getElements().get(i).getName() + newline);
 		}
 	}
 	

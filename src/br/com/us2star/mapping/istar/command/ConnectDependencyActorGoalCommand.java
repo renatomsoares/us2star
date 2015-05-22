@@ -25,7 +25,6 @@ public class ConnectDependencyActorGoalCommand extends AbstractMappingCommand im
 			IstarDependencyLink new_dependencyLink = getIstarData().getIstar_factory().createIstarDependencyLink();
 			new_dependencyLink.setSource(actor);
 			new_dependencyLink.setTarget(goal);
-			//setar tipo de dependência
 			getIstarData().getIstar_model().getDependencyLinks().add(new_dependencyLink);
 		}
 

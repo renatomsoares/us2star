@@ -114,4 +114,14 @@ public class IstarData {
 		}
 		return exists;
 	}
+	
+	public String getActorNameFromGoal(String goal) {
+
+		for (int i = 0 ; i < getIstar_model().getDependencyLinks().size() ; i++) {
+			if (getIstar_model().getDependencyLinks().get(i).getTarget().getName().equals(goal)) {
+				return getIstar_model().getDependencyLinks().get(i).getSource().getName();
+			}
+		}
+		return null;
+	}
 }

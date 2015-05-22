@@ -46,7 +46,7 @@ public class EB2UsData {
 			USNode node = usData.getUs_factory().createUSNode();
 			node.setDescription("Story " + (i+1));
 			node.setId(i+1);
-			usData.getUs_model().getUss().add(node);
+			usData.getUsList().add(node);
 		}
 	}
 
@@ -64,6 +64,10 @@ public class EB2UsData {
 			role.setType(UsElementType.ROLE);
 			action.setType(UsElementType.ACTION);
 			goal.setType(UsElementType.GOAL);
+			
+			role.setId(i+1);
+			action.setId(i+1);
+			goal.setId(i+1);
 
 			usData.getUs_model().getUss().get(i).getElements().add(role);
 			usData.getUs_model().getUss().get(i).getElements().add(action);
