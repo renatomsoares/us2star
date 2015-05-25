@@ -9,6 +9,11 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 
+/**Classe responsável pela leitura do arquivo XLS.
+ * @author Renato Mesquita
+ * @version 1.00
+ */
+
 public class XLSReader {
 
 	private FileInputStream file;
@@ -18,7 +23,6 @@ public class XLSReader {
 	private String backlogName;
 
 	public XLSReader(String path) throws IOException {
-
 
 		this.file = new FileInputStream(new File(path));
 		this.workbook = new HSSFWorkbook(file);

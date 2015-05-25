@@ -1,6 +1,10 @@
 package br.com.us2star.reader.xls;
 import java.util.ArrayList;
 
+/**Classe responsável por interpretar o arquivo XLS importado, de forma a obter as histórias de usuário.
+ * @author Renato Mesquita
+ * @version 1.00
+ */
 public class UserStoriesParser {
 
 	private ArrayList<UserStory> parsedUserStories;

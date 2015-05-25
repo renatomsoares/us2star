@@ -7,6 +7,10 @@ import br.com.us2star.mapping.istar.IstarData;
 import br.com.us2star.mapping.us.UsData;
 import br.com.us2star.us.UsElementType;
 
+/**Esta classe serve para conectar os atores a uma meta, no modelo i*.
+ * @author Renato Mesquita
+ * @version 1.00
+ */
 public class ConnectDependencyActorGoalCommand extends AbstractMappingCommand implements IMappingCommand {
 
 	private UsData usData;

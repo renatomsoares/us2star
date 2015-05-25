@@ -16,6 +16,10 @@ import br.com.us2star.mapping.istar.command.IMappingCommand;
 import br.com.us2star.mapping.istar.command.Role2ActorCommand;
 import br.com.us2star.mapping.us.UsData;
 
+/**Classe responsável por fazer o mapeamento dos objetos do modelo de histórias de usuário para objetos do modelo i*.
+ * @author Renato Mesquita
+ * @version 1.00
+ */
 public class UsData2IstarData {
 
 	private UsData usData;
@@ -48,10 +52,11 @@ public class UsData2IstarData {
 		mapping = new ConnectDependencyGoalTaskCommand(usData, istarData);
 		mapping.execute();
 
-		mapping = new ConnectDependencyGoalSystemActorCommand(usData, istarData);
-		mapping.execute();
+		//mapping = new ConnectDependencyGoalSystemActorCommand(usData, istarData);
+		//mapping.execute(); only to SD mapping
 
-		goal2Goal2();
+
+		decomposeActor();
 	}	
 
 	private void role2Actor() {
@@ -75,9 +80,8 @@ public class UsData2IstarData {
 		}
 	}
 
-	private void goal2Goal2() {
+	private void decomposeActor() {
 
-		//EList<IstarElement> elements = istarData.getIstar_model().getElements();
 		istarData.getIstar_model().getElements().clear();
 
 		for (int i = 0 ; i < usData.getUsList().size() ; i++) {

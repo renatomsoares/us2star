@@ -5,6 +5,10 @@ import br.com.us2star.istar.IstarElementType;
 import br.com.us2star.mapping.istar.IstarData;
 import br.com.us2star.us.UsElement;
 
+/**Classe responsável por criar objetos que representam as metas, no modelo i*, com base nas metas do modelo de histórias de usuário.
+ * @author Renato Mesquita
+ * @version 1.00
+ */
 public class Goal2GoalCommand extends AbstractMappingCommand implements IMappingCommand {
 
 	private UsElement usElement;

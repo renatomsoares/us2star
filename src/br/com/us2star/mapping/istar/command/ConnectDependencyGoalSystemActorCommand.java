@@ -8,6 +8,13 @@ import br.com.us2star.mapping.istar.IstarData;
 import br.com.us2star.mapping.us.UsData;
 import br.com.us2star.us.UsElementType;
 
+/**Esta classe representa a conexão entre as metas e o Ator Sistema.
+ * Como a US2Star fornece o mapeamento do resultado da junção dos modelos SD e SR, este mapeamento foi desnecessário,
+ * uma vez que essa ligação de dependência é ilustrada com a ligação das metas com as tarefas, que se encontram dentro do Ator Sistema.
+ * A classe pode ser necessária numa possível melhoria da ferramenta, para representar separadamente os modelos SD e SR.
+ * @author Renato Mesquita
+ * @version 1.00
+ */
 public class ConnectDependencyGoalSystemActorCommand extends AbstractMappingCommand implements IMappingCommand {
 
 	private UsData usData;

@@ -13,6 +13,11 @@ import br.com.us2star.us.UsElementType;
 import br.com.us2star.us.UsFactory;
 import br.com.us2star.us.impl.UsFactoryImpl;
 
+/**Classe responsável por criar os objetos do modelo de histórias de usuário, a fim de mapeá-los para objetos i*, posteriormente.
+ * Esses objetos de histórias de usuário são armazenados em UsData.
+ * @author Renato Mesquita
+ * @version 1.00
+ */
 public class EB2UsData {
 
 	private ArrayList<UserStory> userStories;

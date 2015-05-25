@@ -18,6 +18,10 @@ import org.w3c.dom.Element;
 
 import br.com.us2star.mapping.istar.IstarData;
 
+/**Classe responsável por fazer a escrita em um arquivo do tipo XMI.
+ * @author Renato Mesquita
+ * @version 1.00
+ */
 public class CreateIstarXMI {
 
 	private IstarData isData;

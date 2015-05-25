@@ -11,28 +11,32 @@ import br.com.us2star.istar.IstarModel;
 import br.com.us2star.istar.IstarPackage;
 import br.com.us2star.istar.impl.IstarFactoryImpl;
 
+/**Classe para armazenar o modelo i* em memória. É nela que ficarão armazenados os objetos que foram mapeados.
+ * @author Renato Mesquita
+ * @version 1.00
+ */
 public class IstarData {
 
 	private IstarFactory istar_factory;
 	private IstarModel istar_model;
-	
+
 	public IstarData() {
 		this.istar_factory = new IstarFactoryImpl();
 		this.istar_model = istar_factory.createIstarModel();
 	}
-	
+
 	public IstarFactory getIstar_factory() {
 		return istar_factory;
 	}
-	
+
 	public void setIstar_factory(IstarFactory istar_factory) {
 		this.istar_factory = istar_factory;
 	}
-	
+
 	public IstarModel getIstar_model() {
 		return istar_model;
 	}
-	
+
 	public void setIstar_model(IstarModel istar_model) {
 		this.istar_model = istar_model;
 	}
@@ -58,17 +62,17 @@ public class IstarData {
 		}
 		return goalReturn;
 	}
-	
+
 	public IstarElement searchTask(String task) {
 		IstarElement taskReturn = null;
-		
+
 		for (int i = 0 ; i < getIstar_model().getCompartments().get(0).getElements().size() ; i++) {
 			if (getIstar_model().getCompartments().get(0).getElements().get(i).getName().equals(task)) {
 				taskReturn = getIstar_model().getCompartments().get(0).getElements().get(i);
 				break;
 			}
 		}
-		
+
 		return taskReturn;
 	}
 
@@ -82,7 +86,7 @@ public class IstarData {
 		}
 		return exists;
 	}
-	
+
 	public boolean actorExists(String actorName) {
 		boolean exists = false;
 		for (int i = 0 ; i < getIstar_model().getCompartments().size() ; i++) {
@@ -92,7 +96,7 @@ public class IstarData {
 		}
 		return exists;
 	}
-	
+
 	public boolean dependencyLinkExists(String source, String target) {
 		boolean exists = false;
 		for (int i = 0 ; i < getIstar_model().getDependencyLinks().size() ; i++) {
@@ -103,7 +107,7 @@ public class IstarData {
 		}
 		return exists;
 	}
-	
+
 	public boolean goalExists(String goalName) {
 		boolean exists = false;
 
@@ -115,6 +119,17 @@ public class IstarData {
 		return exists;
 	}
 	
+	public boolean taskExistsInSystemActor(String taskName) {
+		boolean exists = false;
+
+		for (int i = 0 ; i < getIstar_model().getCompartments().get(0).getElements().size() ; i++) {
+			if (getIstar_model().getCompartments().get(0).getElements().get(i).getName().equals(taskName)) {
+				exists = true;
+			}
+		}
+		return exists;
+	}
+
 	public String getActorNameFromGoal(String goal) {
 
 		for (int i = 0 ; i < getIstar_model().getDependencyLinks().size() ; i++) {
@@ -124,4 +139,15 @@ public class IstarData {
 		}
 		return null;
 	}
+
+	public String getActionNameFromGoal(String goal) {
+
+		for (int i = 0 ; i < getIstar_model().getDependencyLinks().size() ; i++) {
+			if (getIstar_model().getDependencyLinks().get(i).getTarget().getName().equals(goal)) {
+				return getIstar_model().getDependencyLinks().get(i).getSource().getName();
+			}
+		}
+		return null;
+	}
+
 }

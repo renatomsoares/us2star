@@ -1,5 +1,9 @@
 package br.com.us2star.reader.xls;
 
+/**Entidade reponsável por armazenar os textos dos campos referentes às histórias de usuário, no arquivo XLS importado
+ * @author Renato Mesquita
+ * @version 1.00
+ */
 public class UserStory {
 	
 	private String role;

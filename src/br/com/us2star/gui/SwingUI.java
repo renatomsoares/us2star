@@ -30,6 +30,10 @@ import br.com.us2star.reader.xls.XLSReader;
 import br.com.us2star.us.UsElementType;
 import br.com.us2star.writer.xmi.CreateIstarXMI;
 
+/**Classe responsável por conter os elementos da tela da ferramenta, e executar as operações.
+ * @author Renato Mesquita
+ * @version 1.00
+ */
 public class SwingUI extends JPanel implements ActionListener {
 
 	private final String newline = "\n";
@@ -150,38 +154,38 @@ public class SwingUI extends JPanel implements ActionListener {
 		log.setText("");
 		log.setCaretPosition(log.getDocument().getLength());
 	}
-	
+
 	private void printIstarTitle() {
-			log.append("~ " + istarData.getIstar_model().getTitle() + newline);
+		log.append("- " + istarData.getIstar_model().getTitle() + newline);
 	}
-	
+
 	private void printIstarCompartments() {
 		for (int i = 0 ; i < istarData.getIstar_model().getCompartments().size() ; i++) {
-			log.append("~ " + istarData.getIstar_model().getCompartments().get(i).getId() + " " + istarData.getIstar_model().getCompartments().get(i).getType() + ": " + istarData.getIstar_model().getCompartments().get(i).getName() + newline);
+			log.append("- " + istarData.getIstar_model().getCompartments().get(i).getId() + " " + istarData.getIstar_model().getCompartments().get(i).getType() + ": " + istarData.getIstar_model().getCompartments().get(i).getName() + newline);
 		}
 	}
-	
+
 	private void printIstarElements() {
 		for (int i = 0 ; i < istarData.getIstar_model().getElements().size() ; i++) {
-			log.append("~ " + istarData.getIstar_model().getElements().get(i).getId() + " " + istarData.getIstar_model().getElements().get(i).getType() + ": " + istarData.getIstar_model().getElements().get(i).getName() + newline);
+			log.append("- " + istarData.getIstar_model().getElements().get(i).getId() + " " + istarData.getIstar_model().getElements().get(i).getType() + ": " + istarData.getIstar_model().getElements().get(i).getName() + newline);
 		}
 	}
-	
+
 	private void printIstarElementsFromSystemActor() {
 		for (int i = 0 ; i < istarData.getIstar_model().getCompartments().get(0).getElements().size() ; i++) {
-			log.append("~ [SystemActor] " + istarData.getIstar_model().getCompartments().get(0).getElements().get(i).getType() + ": " + istarData.getIstar_model().getCompartments().get(0).getElements().get(i).getName() + newline);
+			log.append("- [SystemActor] " + istarData.getIstar_model().getCompartments().get(0).getElements().get(i).getType() + ": " + istarData.getIstar_model().getCompartments().get(0).getElements().get(i).getName() + newline);
 		}
 	}
-	
+
 	private void printIstarActorLinks() {
 		for (int i = 0 ; i < istarData.getIstar_model().getActorLinks().size() ; i++) {
-			log.append("~ " + istarData.getIstar_model().getActorLinks().get(i).getType() + ": " + istarData.getIstar_model().getActorLinks().get(i).getSource().getName() + " -> " + istarData.getIstar_model().getActorLinks().get(i).getTarget().getName() + newline);
+			log.append("- " + istarData.getIstar_model().getActorLinks().get(i).getType() + ": " + istarData.getIstar_model().getActorLinks().get(i).getSource().getName() + " -> " + istarData.getIstar_model().getActorLinks().get(i).getTarget().getName() + newline);
 		}
 	}
-	
+
 	private void printIstarDependencyLinks() {
 		for (int i = 0 ; i < istarData.getIstar_model().getDependencyLinks().size() ; i++) {
-			log.append("~ " + istarData.getIstar_model().getDependencyLinks().get(i).getType() + ": " + istarData.getIstar_model().getDependencyLinks().get(i).getSource().getName() + " -> " + istarData.getIstar_model().getDependencyLinks().get(i).getTarget().getName() + newline);
+			log.append("- " + istarData.getIstar_model().getDependencyLinks().get(i).getType() + ": " + istarData.getIstar_model().getDependencyLinks().get(i).getSource().getName() + " -> " + istarData.getIstar_model().getDependencyLinks().get(i).getTarget().getName() + newline);
 		}
 	}
 
@@ -191,9 +195,9 @@ public class SwingUI extends JPanel implements ActionListener {
 		this.us2star_data = new UsData2IstarData(usData);
 		this.istarData = us2star_data.getIstarData();
 		log.append("- Mapping " + getCurrentFile().getName() + " that contains user stories, to i* model..." + newline);
-		
+
 		log.append("~~~~~~~~ i* Model: " + istarData.getIstar_model().getTitle() + " ~~~~~~~~" + newline);
-		
+
 		printIstarTitle();
 		printIstarCompartments();
 		printIstarElements();
@@ -202,7 +206,7 @@ public class SwingUI extends JPanel implements ActionListener {
 		printIstarDependencyLinks();
 		log.setCaretPosition(log.getDocument().getLength());
 	}
-	
+
 	private void printUs() {
 		for (int i = 0 ; i < usData.getUs_model().getUss().size() ; i++) {
 			log.append("ID: " + usData.getUs_model().getUss().get(i).getId() + newline);
@@ -230,6 +234,7 @@ public class SwingUI extends JPanel implements ActionListener {
 					currentFileName.setForeground(new Color(35, 142, 35));
 					currentFileName.setText(file.getName());
 					setCurrentFile(file);	
+
 					try {
 						eb2usdata = new EB2UsData(file.getPath());
 					} catch (IOException e) {
@@ -260,7 +265,7 @@ public class SwingUI extends JPanel implements ActionListener {
 	private void saveButton() throws ParserConfigurationException, TransformerException {
 
 		xmiCreater = new CreateIstarXMI(istarData, currentFile.getAbsolutePath());
-		log.append("~ File saved: " + newline);
+		log.append("- File saved: " + newline);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -279,10 +284,10 @@ public class SwingUI extends JPanel implements ActionListener {
 			try {
 				saveButton();
 			} catch (ParserConfigurationException e1) {
-				// TODO Auto-generated catch block
+				log.append("- ERROR: a serious configuration error occurred." + newline);
 				e1.printStackTrace();
 			} catch (TransformerException e1) {
-				// TODO Auto-generated catch block
+				log.append("- ERROR: an exceptional condition occured during the transformation process." + newline);
 				e1.printStackTrace();
 			}
 		}
@@ -315,16 +320,17 @@ public class SwingUI extends JPanel implements ActionListener {
 	}
 
 	private boolean isEb(String path) {
+
 		XLSReader reader = null;
 		try {
 			reader = new XLSReader(path);
 		} catch (IOException e) {
 			log.append("- ERROR: Probably the XLS file exported by EB is protected.");
-			log.append("- SUGGESTION: Open the file and save informing the file type 'XML Spreadsheet 2003'");
+			log.append("- SUGGESTION: Open the file and save the document as a new file informing type 'Excel 97-2003 Workbook'");
 
-			System.out.println("asasa");
 			e.printStackTrace();
 		}
+
 		if (!reader.isEb()) {
 			log.append("- ERROR: The xls file <" + currentFile.getName() + "> wasn't exported from Easybacklog." + newline);
 		}

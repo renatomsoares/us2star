@@ -7,6 +7,10 @@ import br.com.us2star.istar.IstarElementType;
 import br.com.us2star.mapping.istar.IstarData;
 import br.com.us2star.us.UsElement;
 
+/**Classe responsável por criar objetos do tipo ACTOR, no modelo i*, com base nos papéis das histórias de usuário.
+ * @author Renato Mesquita
+ * @version 1.00
+ */
 public class Role2ActorCommand extends AbstractMappingCommand implements IMappingCommand {
 
 	private UsElement usElement;

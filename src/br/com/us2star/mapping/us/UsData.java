@@ -11,6 +11,10 @@ import br.com.us2star.us.UsElement;
 import br.com.us2star.us.UsFactory;
 import br.com.us2star.us.impl.UsFactoryImpl;
 
+/**Entidade responsável por armazenar os objetos de histórias de usuário.
+ * @author Renato Mesquita
+ * @version 1.00
+ */
 public class UsData {
 
 	private UsFactory us_factory;

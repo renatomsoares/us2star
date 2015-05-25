@@ -6,6 +6,10 @@ import br.com.us2star.mapping.istar.IstarData;
 import br.com.us2star.mapping.us.UsData;
 import br.com.us2star.us.UsElementType;
 
+/**Esta classe representa a conexão entre as metas e as tarefas, que estão dentro do Ator Sistema.
+ * @author Renato Mesquita
+ * @version 1.00
+ */
 public class ConnectDependencyGoalTaskCommand extends AbstractMappingCommand implements IMappingCommand {
 
 	private UsData usData;

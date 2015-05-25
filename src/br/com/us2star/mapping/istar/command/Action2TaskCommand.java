@@ -5,6 +5,11 @@ import br.com.us2star.istar.IstarElementType;
 import br.com.us2star.mapping.istar.IstarData;
 import br.com.us2star.us.UsElement;
 
+/**Classe que representa o mapeamento entre uma ação, das histórias de usuário, para uma tarefa, no modelo i*.
+ * As tarefas são armazenadas dentro do Ator Sistema, do modelo i*.
+ * @author Renato Mesquita
+ * @version 1.00
+ */
 public class Action2TaskCommand extends AbstractMappingCommand implements IMappingCommand {
 
 	private UsElement usElement;
