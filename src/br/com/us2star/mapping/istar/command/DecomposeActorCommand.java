@@ -49,7 +49,7 @@ public class DecomposeActorCommand extends AbstractMappingCommand implements IMa
 
 						IstarCompartment new_compartment = getIstarData().getIstar_factory().createIstarCompartment();
 						new_compartment.setName("{Generic ACTOR by goal: " + usData.getUsList().get(i).getElements().get(2).getDescription() + "}");
-						new_compartment.setType(IstarCompartmentType.AGENT);
+						new_compartment.setType(IstarCompartmentType.ACTOR);
 						getIstarData().getIstar_model().getCompartments().add(new_compartment);
 
 						IstarDependencyLink new_dependencyLink = getIstarData().getIstar_factory().createIstarDependencyLink();
