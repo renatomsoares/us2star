@@ -156,36 +156,49 @@ public class SwingUI extends JPanel implements ActionListener {
 	}
 
 	private void printIstarTitle() {
-		log.append("- " + istarData.getIstar_model().getTitle() + newline);
+		log.append("- Model Title: " + istarData.getIstar_model().getTitle() + newline);
 	}
 
 	private void printIstarCompartments() {
 		for (int i = 0 ; i < istarData.getIstar_model().getCompartments().size() ; i++) {
-			log.append("- " + istarData.getIstar_model().getCompartments().get(i).getId() + " " + istarData.getIstar_model().getCompartments().get(i).getType() + ": " + istarData.getIstar_model().getCompartments().get(i).getName() + newline);
+			log.append("- " + istarData.getIstar_model().getCompartments().get(i).getType() +
+					": " + istarData.getIstar_model().getCompartments().get(i).getName() + newline);
 		}
 	}
 
 	private void printIstarElements() {
 		for (int i = 0 ; i < istarData.getIstar_model().getElements().size() ; i++) {
-			log.append("- " + istarData.getIstar_model().getElements().get(i).getId() + " " + istarData.getIstar_model().getElements().get(i).getType() + ": " + istarData.getIstar_model().getElements().get(i).getName() + newline);
+			log.append("- " + istarData.getIstar_model().getElements().get(i).getType() + ": " + istarData.getIstar_model().getElements().get(i).getName() + newline);
 		}
 	}
 
 	private void printIstarElementsFromSystemActor() {
 		for (int i = 0 ; i < istarData.getIstar_model().getCompartments().get(0).getElements().size() ; i++) {
-			log.append("- [SystemActor] " + istarData.getIstar_model().getCompartments().get(0).getElements().get(i).getType() + ": " + istarData.getIstar_model().getCompartments().get(0).getElements().get(i).getName() + newline);
+			log.append("- [SystemActor] " + istarData.getIstar_model().getCompartments().get(0).getElements().get(i).getType() +
+					": " + istarData.getIstar_model().getCompartments().get(0).getElements().get(i).getName() + newline);
 		}
 	}
 
 	private void printIstarActorLinks() {
 		for (int i = 0 ; i < istarData.getIstar_model().getActorLinks().size() ; i++) {
-			log.append("- " + istarData.getIstar_model().getActorLinks().get(i).getType() + ": " + istarData.getIstar_model().getActorLinks().get(i).getSource().getName() + " -> " + istarData.getIstar_model().getActorLinks().get(i).getTarget().getName() + newline);
+			log.append("- " + istarData.getIstar_model().getActorLinks().get(i).getType() +
+					": " + istarData.getIstar_model().getActorLinks().get(i).getSource().getName() +
+					" -> " + istarData.getIstar_model().getActorLinks().get(i).getTarget().getName() + newline);
 		}
 	}
 
 	private void printIstarDependencyLinks() {
 		for (int i = 0 ; i < istarData.getIstar_model().getDependencyLinks().size() ; i++) {
-			log.append("- " + istarData.getIstar_model().getDependencyLinks().get(i).getType() + ": " + istarData.getIstar_model().getDependencyLinks().get(i).getSource().getName() + " -> " + istarData.getIstar_model().getDependencyLinks().get(i).getTarget().getName() + newline);
+			log.append("- " + istarData.getIstar_model().getDependencyLinks().get(i).getType() +
+					": " + istarData.getIstar_model().getDependencyLinks().get(i).getSource().getName() +
+					" -> " + istarData.getIstar_model().getDependencyLinks().get(i).getTarget().getName() + newline);
+		}
+	}
+	
+	private void printIstarTaskDecompositions() {
+		for (int i = 0 ; i < istarData.getIstar_model().getCompartments().get(0).getTasksDecompositions().size() ; i++) {
+			log.append("- Task decomposition: " + istarData.getIstar_model().getCompartments().get(0).getTasksDecompositions().get(i).getSource().getName() +
+					" -> " + istarData.getIstar_model().getCompartments().get(0).getTasksDecompositions().get(i).getTarget().getName() + newline);
 		}
 	}
 
@@ -204,6 +217,7 @@ public class SwingUI extends JPanel implements ActionListener {
 		printIstarElementsFromSystemActor();
 		printIstarActorLinks();
 		printIstarDependencyLinks();
+		printIstarTaskDecompositions();
 		log.setCaretPosition(log.getDocument().getLength());
 	}
 

@@ -6,8 +6,11 @@ import br.com.us2star.istar.IstarActorLink;
 import br.com.us2star.istar.IstarCompartment;
 import br.com.us2star.istar.IstarDependencyLink;
 import br.com.us2star.istar.IstarElement;
+import br.com.us2star.istar.IstarElementType;
 import br.com.us2star.istar.IstarFactory;
+import br.com.us2star.istar.IstarIntentionalElement;
 import br.com.us2star.istar.IstarModel;
+import br.com.us2star.istar.IstarNodeObject;
 import br.com.us2star.istar.IstarPackage;
 import br.com.us2star.istar.impl.IstarFactoryImpl;
 
@@ -63,13 +66,24 @@ public class IstarData {
 		return goalReturn;
 	}
 
+	public IstarElement searchResource(String resource) {
+		IstarElement resourceReturn = null;
+		for (int i = 0 ; i < getIstar_model().getElements().size() ; i++) {
+			if (getIstar_model().getElements().get(i).getName().equals(resource) && (getIstar_model().getElements().get(i).getType() == IstarElementType.RESOURCE)) {
+				resourceReturn = getIstar_model().getElements().get(i);
+				break;
+			}
+		}
+		return resourceReturn;
+	}
+
 	public IstarElement searchTask(String task) {
+
 		IstarElement taskReturn = null;
 
 		for (int i = 0 ; i < getIstar_model().getCompartments().get(0).getElements().size() ; i++) {
 			if (getIstar_model().getCompartments().get(0).getElements().get(i).getName().equals(task)) {
 				taskReturn = getIstar_model().getCompartments().get(0).getElements().get(i);
-				break;
 			}
 		}
 
@@ -96,12 +110,32 @@ public class IstarData {
 		}
 		return exists;
 	}
+	
+	public void removeDependencyLink(String source, String target) {
+		for (int i = 0 ; i < getIstar_model().getDependencyLinks().size() ; i++) {
+			if ((getIstar_model().getDependencyLinks().get(i).getSource().getName().equals(source)) &&
+					(getIstar_model().getDependencyLinks().get(i).getTarget().getName().equals(target))){
+				getIstar_model().getDependencyLinks().remove(i);
+			}
+		}
+	}
 
 	public boolean dependencyLinkExists(String source, String target) {
 		boolean exists = false;
 		for (int i = 0 ; i < getIstar_model().getDependencyLinks().size() ; i++) {
 			if ((getIstar_model().getDependencyLinks().get(i).getSource().getName().equals(source)) &&
 					(getIstar_model().getDependencyLinks().get(i).getTarget().getName().equals(target))){
+				exists = true;
+			}
+		}
+		return exists;
+	}
+
+	public boolean dependencyLinkExists(IstarNodeObject source, IstarNodeObject target) {
+		boolean exists = false;
+		for (int i = 0 ; i < getIstar_model().getDependencyLinks().size() ; i++) {
+			if ((getIstar_model().getDependencyLinks().get(i).getSource().equals(source)) &&
+					(getIstar_model().getDependencyLinks().get(i).getTarget().equals(target))){
 				exists = true;
 			}
 		}
@@ -118,7 +152,7 @@ public class IstarData {
 		}
 		return exists;
 	}
-	
+
 	public boolean taskExistsInSystemActor(String taskName) {
 		boolean exists = false;
 
@@ -140,6 +174,16 @@ public class IstarData {
 		return null;
 	}
 
+	public String getTaskNameFromGoal(String goal) {
+
+		for (int i = 0 ; i < getIstar_model().getDependencyLinks().size() ; i++) {
+			if (getIstar_model().getDependencyLinks().get(i).getSource().getName().equals(goal)) {
+				return getIstar_model().getDependencyLinks().get(i).getTarget().getName();
+			}
+		}
+		return null;
+	}
+
 	public String getActionNameFromGoal(String goal) {
 
 		for (int i = 0 ; i < getIstar_model().getDependencyLinks().size() ; i++) {
@@ -148,6 +192,16 @@ public class IstarData {
 			}
 		}
 		return null;
+	}
+
+	public boolean taskDecompositionExists(IstarIntentionalElement source, IstarIntentionalElement target) {
+		for (int i = 0 ; i < getIstar_model().getCompartments().get(0).getTasksDecompositions().size() ; i++) {
+			if ((getIstar_model().getCompartments().get(0).getTasksDecompositions().get(i).getSource().equals(source))&&
+					(getIstar_model().getCompartments().get(0).getTasksDecompositions().get(i).getTarget().equals(target))) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
