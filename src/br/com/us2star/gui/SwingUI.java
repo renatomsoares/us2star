@@ -29,6 +29,7 @@ import br.com.us2star.mapping.us.UsData;
 import br.com.us2star.reader.xls.XLSReader;
 import br.com.us2star.us.UsElementType;
 import br.com.us2star.writer.xmi.CreateIstarXMI;
+import br.com.us2star.writer.xmi.CreateIstarXmiToIstarTool;
 
 /**Classe responsável por conter os elementos da tela da ferramenta, e executar as operações.
  * @author Renato Mesquita
@@ -51,7 +52,8 @@ public class SwingUI extends JPanel implements ActionListener {
 	private JPanel buttonPanel;
 	private JPanel currentFilePanel;
 	private UsData usData;
-	private CreateIstarXMI xmiCreater;
+	//private CreateIstarXMI xmiCreater;
+	private CreateIstarXmiToIstarTool xmiCreater;
 	private UsData2IstarData us2star_data;
 	private IstarData istarData;
 	private JScrollPane logScrollPane;
@@ -278,7 +280,8 @@ public class SwingUI extends JPanel implements ActionListener {
 
 	private void saveButton() throws ParserConfigurationException, TransformerException {
 
-		xmiCreater = new CreateIstarXMI(istarData, currentFile.getAbsolutePath());
+		//xmiCreater = new CreateIstarXMI(istarData, currentFile.getAbsolutePath());
+		xmiCreater = new CreateIstarXmiToIstarTool(istarData, currentFile.getAbsolutePath());
 		log.append("- File saved: " + newline);
 	}
 
