@@ -38,6 +38,7 @@ public class CreateIstarXMI {
 	private Document doc;
 	private Element rootElement;
 	private String pathToSave;
+	private int numTaksDecompositions;
 
 	public CreateIstarXMI(IstarData isData, String pathToSave) throws ParserConfigurationException, TransformerException {
 		this.isData = isData;
@@ -45,6 +46,7 @@ public class CreateIstarXMI {
 		this.docBuilder = docFactory.newDocumentBuilder();
 		this.doc = docBuilder.newDocument();
 		this.pathToSave = pathToSave;
+		this.numTaksDecompositions = 0;
 
 		writeXmiElements();
 		writeContentIntoXmiFile();
@@ -146,7 +148,8 @@ public class CreateIstarXMI {
 	private int getElementIdInSA(String element) {
 		NodeList list = rootElement.getElementsByTagName("compartments");
 		list = list.item(list.getLength()-1).getChildNodes();
-		for (int i = 0 ; i < list.getLength() ; i++) {
+		for (int i = 0 ; i < list.getLength()-numTaksDecompositions ; i++) {
+			
 			if (list.item(i).getAttributes().getNamedItem("name").getNodeValue().equals(element)) {
 				return i;
 			}
@@ -208,6 +211,30 @@ public class CreateIstarXMI {
 			Attr elementType = doc.createAttribute("type");
 			elementType.setValue(isData.getIstar_model().getCompartments().get(0).getElements().get(i).getType().getName());
 			element.setAttributeNode(elementType);
+		}
+		
+		for (int i = 0 ; i < isData.getIstar_model().getCompartments().get(0).getTasksDecompositions().size() ; i++) {
+			Element element = doc.createElement("tasksDecompositions");
+			staff.appendChild(element);
+			
+			Attr source = doc.createAttribute("source");
+			Attr target = doc.createAttribute("target");
+			source.setValue("//@compartments."+
+							getActorId(rootElement.getElementsByTagName("compartments")
+							.item(rootElement.getElementsByTagName("compartments")
+							.getLength()-1).getAttributes().getNamedItem("name").getNodeValue())+"/@elements." +
+							getElementIdInSA(isData.getIstar_model().getCompartments().get(0).getTasksDecompositions().get(i).getSource().getName()));
+			
+			target.setValue("//@compartments."+
+					getActorId(rootElement.getElementsByTagName("compartments")
+					.item(rootElement.getElementsByTagName("compartments")
+					.getLength()-1).getAttributes().getNamedItem("name").getNodeValue())+"/@elements." +
+					getElementIdInSA(isData.getIstar_model().getCompartments().get(0).getTasksDecompositions().get(i).getTarget().getName()));
+			
+			
+			element.setAttributeNode(source);
+			element.setAttributeNode(target);
+			numTaksDecompositions++;
 		}
 		
 	}

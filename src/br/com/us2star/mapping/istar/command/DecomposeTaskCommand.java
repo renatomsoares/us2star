@@ -43,22 +43,26 @@ public class DecomposeTaskCommand extends AbstractMappingCommand implements IMap
 						System.out.println("chegou");
 						System.out.println("taskname=" + taskName);
 
-						IstarIntentionalElement new_task = getIstarData().getIstar_factory().createIstarIntentionalElement();
+						IstarIntentionalElement new_it_task = getIstarData().getIstar_factory().createIstarIntentionalElement();
+						new_it_task.setName("{Generic TASK by goal: " + usData.getUsList().get(i).getElements().get(2).getDescription() + "}");
+						
+						IstarElement new_task = getIstarData().getIstar_factory().createIstarElement();
 						new_task.setName("{Generic TASK by goal: " + usData.getUsList().get(i).getElements().get(2).getDescription() + "}");
-
+						getIstarData().getIstar_model().getCompartments().get(0).getElements().add(new_task);
+						
 						IstarTaskDecomposition decomposition1 = getIstarData().getIstar_factory().createIstarTaskDecomposition();
-						decomposition1.setSource(new_task);
+						decomposition1.setSource(new_it_task);
 						decomposition1.setTarget(getIstarData().searchTask(taskName));
 						addUniqueTaskDecomposition(decomposition1);
 
 						IstarTaskDecomposition decomposition2 = getIstarData().getIstar_factory().createIstarTaskDecomposition();
-						decomposition2.setSource(new_task);
+						decomposition2.setSource(new_it_task);
 						decomposition2.setTarget(getIstarData().searchTask(usData.getUsList().get(i).getElements().get(1).getDescription()));
 						addUniqueTaskDecomposition(decomposition2);
 
 						IstarDependencyLink dependency_goal_gTask = getIstarData().getIstar_factory().createIstarDependencyLink();
 						dependency_goal_gTask.setSource(getIstarData().searchGoal(usData.getUsList().get(i).getElements().get(2).getDescription()));
-						dependency_goal_gTask.setTarget(new_task);
+						dependency_goal_gTask.setTarget(new_it_task);
 						getIstarData().getIstar_model().getDependencyLinks().add(dependency_goal_gTask);
 						
 						getIstarData().removeDependencyLink(goal, taskName);
