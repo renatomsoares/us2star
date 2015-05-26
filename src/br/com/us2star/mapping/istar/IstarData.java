@@ -174,6 +174,13 @@ public class IstarData {
 		return null;
 	}
 
+	public void removeTaskAtSA(String task) {
+		for (int i = 0 ; i < getIstar_model().getCompartments().get(0).getElements().size() ; i++) {
+			if (getIstar_model().getCompartments().get(0).getElements().get(i).getName().equals(task)) {
+				getIstar_model().getCompartments().get(0).getElements().remove(i);
+			}
+		}
+	}
 	public String getTaskNameFromGoal(String goal) {
 
 		for (int i = 0 ; i < getIstar_model().getDependencyLinks().size() ; i++) {

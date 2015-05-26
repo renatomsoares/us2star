@@ -24,7 +24,9 @@ public class Action2TaskCommand extends AbstractMappingCommand implements IMappi
 		IstarElement new_element = getIstarData().getIstar_factory().createIstarElement();
 		new_element.setName(this.usElement.getDescription());
 		new_element.setType(IstarElementType.TASK);
-		getIstarData().getIstar_model().getCompartments().get(0).getElements().add(new_element);
+		if (!getIstarData().taskExistsInSystemActor(new_element.getName())) {
+			getIstarData().getIstar_model().getCompartments().get(0).getElements().add(new_element);
+		}
 		//getIstarData().getIstar_elements().add(new_element);
 		return true;
 	}

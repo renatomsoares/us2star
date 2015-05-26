@@ -71,7 +71,7 @@ public class DecomposeActorCommand extends AbstractMappingCommand implements IMa
 						
 						getIstarData().removeDependencyLink(actorName, goal);
 						getIstarData().removeDependencyLink(usData.getUsList().get(i).getElements().get(0).getDescription(), goal);
-
+						
 					}
 				}
 			}

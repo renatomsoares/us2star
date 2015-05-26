@@ -31,7 +31,10 @@ public class ConnectDependencyGoalTaskCommand extends AbstractMappingCommand imp
 			new_dependencyLink.setSource(goal);
 			new_dependencyLink.setTarget(task);
 
-			getIstarData().getIstar_model().getDependencyLinks().add(new_dependencyLink);
+			if (!getIstarData().dependencyLinkExists(new_dependencyLink.getSource(), new_dependencyLink.getTarget())) {
+				getIstarData().getIstar_model().getDependencyLinks().add(new_dependencyLink);
+			}
+			
 		}
 
 		return true;
