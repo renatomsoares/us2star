@@ -69,7 +69,10 @@ public class CreateIstarXmiToIstarTool {
 		Attr title = doc.createAttribute("title");
 		title.setNodeValue(isData.getIstar_model().getTitle());
 		rootElement.setAttributeNode(title);
-		rootElement.setTextContent("xmi:version=\"2.0\" xmlns:xmi=\"http://www.omg.org/XMI\" xmlns:istar=\"http://www.cin.ufpe.br/istar\"");
+		rootElement.setAttribute("xmi:version", "2.0");
+		rootElement.setAttribute("xmlns:xmi", "http://www.omg.org/XMI");
+		rootElement.setAttribute("xmlns:istar", "http://www.cin.ufpe.br/istar");
+		//rootElement.setTextContent("xmi:version=\"2.0\" xmlns:xmi=\"http://www.omg.org/XMI\" xmlns:istar=\"http://www.cin.ufpe.br/istar\"");
 		doc.appendChild(rootElement);
 	}
 
