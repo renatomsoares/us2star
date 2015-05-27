@@ -30,23 +30,10 @@ import br.com.us2star.mapping.istar.IstarData;
  * @author Renato Mesquita
  * @version 1.00
  */
-public class CreateIstarXMI {
+public class CreateIstarXmiToEuGENiaEditor extends AbstractCreateIstarXmi{
 
-	private IstarData isData;
-	private DocumentBuilderFactory docFactory;
-	private DocumentBuilder docBuilder;
-	private Document doc;
-	private Element rootElement;
-	private String pathToSave;
-	private int numTaksDecompositions;
-
-	public CreateIstarXMI(IstarData isData, String pathToSave) throws ParserConfigurationException, TransformerException {
-		this.isData = isData;
-		this.docFactory = DocumentBuilderFactory.newInstance();
-		this.docBuilder = docFactory.newDocumentBuilder();
-		this.doc = docBuilder.newDocument();
-		this.pathToSave = pathToSave;
-		this.numTaksDecompositions = 0;
+	public CreateIstarXmiToEuGENiaEditor(IstarData isData, String pathToSave) throws ParserConfigurationException, TransformerException {
+		super(isData, pathToSave);
 
 		writeXmiElements();
 		writeContentIntoXmiFile();
@@ -64,33 +51,33 @@ public class CreateIstarXMI {
 	private void createRootElement() {
 		
 		System.out.println("IstarModel:IstarModel");
-		this.rootElement = doc.createElement("IstarModel:IstarModel");
+		setRootElement(doc.createElement("IstarModel:IstarModel"));
 		
 		//Attr t = doc.createTextNode("xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:IstarModel="IstarModel"")
-		doc.appendChild(rootElement);
+		doc.appendChild(getRootElement());
 	}
 
 	private void createDependencyLinks() {
-		for (int i = 0 ; i < isData.getIstar_model().getDependencyLinks().size() ; i++) {
+		for (int i = 0 ; i < getIsData().getIstar_model().getDependencyLinks().size() ; i++) {
 			Element staff = doc.createElement("dependencyLinks");
-			rootElement.appendChild(staff);
+			getRootElement().appendChild(staff);
 			
 			Attr source = doc.createAttribute("source");
 			Attr target = doc.createAttribute("target");
 			
 			
-			if (getElementIdOutSA(isData.getIstar_model().getDependencyLinks().get(i).getSource().getName()) != -1) {
-				source.setValue("//@elements." + getElementIdOutSA(isData.getIstar_model().getDependencyLinks().get(i).getSource().getName()));
-			} else if (getActorId(isData.getIstar_model().getDependencyLinks().get(i).getSource().getName()) != -1) {
-				source.setValue("//@compartments." + getActorId(isData.getIstar_model().getDependencyLinks().get(i).getSource().getName()));
+			if (getElementIdOutSA(getIsData().getIstar_model().getDependencyLinks().get(i).getSource().getName()) != -1) {
+				source.setValue("//@elements." + getElementIdOutSA(getIsData().getIstar_model().getDependencyLinks().get(i).getSource().getName()));
+			} else if (getActorId(getIsData().getIstar_model().getDependencyLinks().get(i).getSource().getName()) != -1) {
+				source.setValue("//@compartments." + getActorId(getIsData().getIstar_model().getDependencyLinks().get(i).getSource().getName()));
 			}
 			
-			int SA_id = rootElement.getElementsByTagName("compartments").getLength()-1;
+			int SA_id = getRootElement().getElementsByTagName("compartments").getLength()-1;
 			
-			if(getElementIdInSA(isData.getIstar_model().getDependencyLinks().get(i).getTarget().getName()) != -1) {
-				target.setValue("//@compartments." + SA_id + "/@elements." + getElementIdInSA(isData.getIstar_model().getDependencyLinks().get(i).getTarget().getName()));
-			} else if (getElementIdOutSA(isData.getIstar_model().getDependencyLinks().get(i).getTarget().getName()) != -1) {
-				target.setValue("//@elements." + getElementIdOutSA(isData.getIstar_model().getDependencyLinks().get(i).getTarget().getName()));
+			if(getElementIdInSA(getIsData().getIstar_model().getDependencyLinks().get(i).getTarget().getName()) != -1) {
+				target.setValue("//@compartments." + SA_id + "/@elements." + getElementIdInSA(getIsData().getIstar_model().getDependencyLinks().get(i).getTarget().getName()));
+			} else if (getElementIdOutSA(getIsData().getIstar_model().getDependencyLinks().get(i).getTarget().getName()) != -1) {
+				target.setValue("//@elements." + getElementIdOutSA(getIsData().getIstar_model().getDependencyLinks().get(i).getTarget().getName()));
 			}
 			
 			staff.setAttributeNode(source);
@@ -99,16 +86,16 @@ public class CreateIstarXMI {
 	}
 	
 	private void createActorLinks() {
-		for (int i = 0 ; i < isData.getIstar_model().getActorLinks().size() ; i++) {
+		for (int i = 0 ; i < getIsData().getIstar_model().getActorLinks().size() ; i++) {
 			Element staff = doc.createElement("actorLinks");
-			rootElement.appendChild(staff);
+			getRootElement().appendChild(staff);
 			
 			
 			Attr source = doc.createAttribute("source");
-			source.setValue("//@compartments."+ getActorId(isData.getIstar_model().getActorLinks().get(i).getSource().getName()));
+			source.setValue("//@compartments."+ getActorId(getIsData().getIstar_model().getActorLinks().get(i).getSource().getName()));
 			
 			Attr target = doc.createAttribute("target");
-			target.setValue("//@compartments."+ getActorId(isData.getIstar_model().getActorLinks().get(i).getTarget().getName()));
+			target.setValue("//@compartments."+ getActorId(getIsData().getIstar_model().getActorLinks().get(i).getTarget().getName()));
 			
 			staff.setAttributeNode(source);
 			staff.setAttributeNode(target);
@@ -125,7 +112,7 @@ public class CreateIstarXMI {
 	}
 	
 	private int getActorId(String compartment) {
-		NodeList list = rootElement.getElementsByTagName("compartments");
+		NodeList list = getRootElement().getElementsByTagName("compartments");
 		for (int i = 0 ; i < list.getLength() ; i++) {
 			System.out.println(list.item(i).getAttributes().getNamedItem("name").getNodeValue());
 			if (list.item(i).getAttributes().getNamedItem("name").getNodeValue().equals(compartment)) {
@@ -136,7 +123,7 @@ public class CreateIstarXMI {
 	}
 	
 	private int getElementIdOutSA(String element) {
-		NodeList list = rootElement.getElementsByTagName("elements");
+		NodeList list = getRootElement().getElementsByTagName("elements");
 		for (int i = 0 ; i < list.getLength() ; i++) {
 			if (list.item(i).getAttributes().getNamedItem("name").getNodeValue().equals(element)) {
 				return i;
@@ -146,9 +133,9 @@ public class CreateIstarXMI {
 	}
 	
 	private int getElementIdInSA(String element) {
-		NodeList list = rootElement.getElementsByTagName("compartments");
+		NodeList list = getRootElement().getElementsByTagName("compartments");
 		list = list.item(list.getLength()-1).getChildNodes();
-		for (int i = 0 ; i < list.getLength()-numTaksDecompositions ; i++) {
+		for (int i = 0 ; i < list.getLength()-getNumTasksDecompositions() ; i++) {
 			
 			if (list.item(i).getAttributes().getNamedItem("name").getNodeValue().equals(element)) {
 				return i;
@@ -159,12 +146,12 @@ public class CreateIstarXMI {
 	
 	
 	private void createElements() {
-		for (int i = 0 ; i < isData.getIstar_model().getElements().size() ; i++) {
+		for (int i = 0 ; i < getIsData().getIstar_model().getElements().size() ; i++) {
 			Element staff = doc.createElement("elements");
-			rootElement.appendChild(staff);
+			getRootElement().appendChild(staff);
 
 			Attr name = doc.createAttribute("name");
-			name.setValue(isData.getIstar_model().getElements().get(i).getName());
+			name.setValue(getIsData().getIstar_model().getElements().get(i).getName());
 
 			//Attr type = doc.createAttribute("type");
 			//type.setValue(isData.getIstar_model().getElements().get(i).getType().getName());
@@ -177,12 +164,12 @@ public class CreateIstarXMI {
 	}
 
 	private void createCompartments() {
-		for (int i = 1 ; i < isData.getIstar_model().getCompartments().size() ; i++) {
+		for (int i = 1 ; i < getIsData().getIstar_model().getCompartments().size() ; i++) {
 			Element staff = doc.createElement("compartments");
-			rootElement.appendChild(staff);
+			getRootElement().appendChild(staff);
 
 			Attr name = doc.createAttribute("name");
-			name.setValue(isData.getIstar_model().getCompartments().get(i).getName());
+			name.setValue(getIsData().getIstar_model().getCompartments().get(i).getName());
 
 			//Attr type = doc.createAttribute("type");
 			//type.setValue(isData.getIstar_model().getCompartments().get(i).getType().getName());
@@ -195,46 +182,46 @@ public class CreateIstarXMI {
 	private void createSystemActorAndTaks() {
 		
 		Element staff = doc.createElement("compartments");
-		rootElement.appendChild(staff);
+		getRootElement().appendChild(staff);
 		Attr name = doc.createAttribute("name");
-		name.setValue(isData.getIstar_model().getCompartments().get(0).getName());
+		name.setValue(getIsData().getIstar_model().getCompartments().get(0).getName());
 		staff.setAttributeNode(name);
 		
-		for (int i = 0 ; i < isData.getIstar_model().getCompartments().get(0).getElements().size() ; i++) {
+		for (int i = 0 ; i < getIsData().getIstar_model().getCompartments().get(0).getElements().size() ; i++) {
 			Element element = doc.createElement("elements");
 			staff.appendChild(element);
 			
 			Attr elementName = doc.createAttribute("name");
-			elementName.setValue(isData.getIstar_model().getCompartments().get(0).getElements().get(i).getName());
+			elementName.setValue(getIsData().getIstar_model().getCompartments().get(0).getElements().get(i).getName());
 			element.setAttributeNode(elementName);
 			
 			Attr elementType = doc.createAttribute("type");
-			elementType.setValue(isData.getIstar_model().getCompartments().get(0).getElements().get(i).getType().getName());
+			elementType.setValue(getIsData().getIstar_model().getCompartments().get(0).getElements().get(i).getType().getName());
 			element.setAttributeNode(elementType);
 		}
 		
-		for (int i = 0 ; i < isData.getIstar_model().getCompartments().get(0).getTasksDecompositions().size() ; i++) {
+		for (int i = 0 ; i < getIsData().getIstar_model().getCompartments().get(0).getTasksDecompositions().size() ; i++) {
 			Element element = doc.createElement("tasksDecompositions");
 			staff.appendChild(element);
 			
 			Attr source = doc.createAttribute("source");
 			Attr target = doc.createAttribute("target");
 			source.setValue("//@compartments."+
-							getActorId(rootElement.getElementsByTagName("compartments")
-							.item(rootElement.getElementsByTagName("compartments")
+							getActorId(getRootElement().getElementsByTagName("compartments")
+							.item(getRootElement().getElementsByTagName("compartments")
 							.getLength()-1).getAttributes().getNamedItem("name").getNodeValue())+"/@elements." +
-							getElementIdInSA(isData.getIstar_model().getCompartments().get(0).getTasksDecompositions().get(i).getSource().getName()));
+							getElementIdInSA(getIsData().getIstar_model().getCompartments().get(0).getTasksDecompositions().get(i).getSource().getName()));
 			
 			target.setValue("//@compartments."+
-					getActorId(rootElement.getElementsByTagName("compartments")
-					.item(rootElement.getElementsByTagName("compartments")
+					getActorId(getRootElement().getElementsByTagName("compartments")
+					.item(getRootElement().getElementsByTagName("compartments")
 					.getLength()-1).getAttributes().getNamedItem("name").getNodeValue())+"/@elements." +
-					getElementIdInSA(isData.getIstar_model().getCompartments().get(0).getTasksDecompositions().get(i).getTarget().getName()));
+					getElementIdInSA(getIsData().getIstar_model().getCompartments().get(0).getTasksDecompositions().get(i).getTarget().getName()));
 			
 			
 			element.setAttributeNode(source);
 			element.setAttributeNode(target);
-			numTaksDecompositions++;
+			incNumTasksDecompositions();
 		}
 		
 	}
@@ -250,6 +237,6 @@ public class CreateIstarXMI {
 	}
 
 	private String parsePathToSave(){
-		return pathToSave.substring(0, pathToSave.length()-4) + "_istar.xmi";
+		return getPathToSave().substring(0, getPathToSave().length()-4) + "_istar.xmi";
 	}
 }

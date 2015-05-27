@@ -48,6 +48,7 @@ public class DecomposeTaskCommand extends AbstractMappingCommand implements IMap
 						
 						IstarElement new_task = getIstarData().getIstar_factory().createIstarElement();
 						new_task.setName("{Generic TASK by goal: " + usData.getUsList().get(i).getElements().get(2).getDescription() + "}");
+						new_task.setType(IstarElementType.TASK);
 						getIstarData().getIstar_model().getCompartments().get(0).getElements().add(new_task);
 						
 						IstarTaskDecomposition decomposition1 = getIstarData().getIstar_factory().createIstarTaskDecomposition();

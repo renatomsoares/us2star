@@ -28,7 +28,8 @@ import br.com.us2star.mapping.us.EB2UsData;
 import br.com.us2star.mapping.us.UsData;
 import br.com.us2star.reader.xls.XLSReader;
 import br.com.us2star.us.UsElementType;
-import br.com.us2star.writer.xmi.CreateIstarXMI;
+import br.com.us2star.writer.xmi.AbstractCreateIstarXmi;
+import br.com.us2star.writer.xmi.CreateIstarXmiToEuGENiaEditor;
 import br.com.us2star.writer.xmi.CreateIstarXmiToIstarTool;
 
 /**Classe responsável por conter os elementos da tela da ferramenta, e executar as operações.
@@ -52,8 +53,7 @@ public class SwingUI extends JPanel implements ActionListener {
 	private JPanel buttonPanel;
 	private JPanel currentFilePanel;
 	private UsData usData;
-	//private CreateIstarXMI xmiCreater;
-	private CreateIstarXmiToIstarTool xmiCreater;
+	private AbstractCreateIstarXmi xmiCreater;
 	private UsData2IstarData us2star_data;
 	private IstarData istarData;
 	private JScrollPane logScrollPane;
@@ -278,10 +278,15 @@ public class SwingUI extends JPanel implements ActionListener {
 		log.append("- Current file deleted!");
 	}
 
-	private void saveButton() throws ParserConfigurationException, TransformerException {
+	private void saveToIstarToolButton() throws ParserConfigurationException, TransformerException {
 
 		//xmiCreater = new CreateIstarXMI(istarData, currentFile.getAbsolutePath());
 		xmiCreater = new CreateIstarXmiToIstarTool(istarData, currentFile.getAbsolutePath());
+		log.append("- File saved: " + newline);
+	}
+	
+	private void saveToEuGENiaEditorButton () throws ParserConfigurationException, TransformerException {
+		xmiCreater = new CreateIstarXmiToEuGENiaEditor(istarData, currentFile.getAbsolutePath());
 		log.append("- File saved: " + newline);
 	}
 
@@ -299,7 +304,7 @@ public class SwingUI extends JPanel implements ActionListener {
 			deleteFileButton();
 		} else if (e.getSource() == saveButton) {
 			try {
-				saveButton();
+				saveToIstarToolButton();
 			} catch (ParserConfigurationException e1) {
 				log.append("- ERROR: a serious configuration error occurred." + newline);
 				e1.printStackTrace();
