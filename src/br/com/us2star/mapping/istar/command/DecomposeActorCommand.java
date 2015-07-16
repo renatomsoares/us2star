@@ -35,12 +35,13 @@ public class DecomposeActorCommand extends AbstractMappingCommand implements IMa
 				new_element.setId(usData.getUsList().get(i).getElements().get(2).getId());
 				new_element.setType(IstarElementType.GOAL);
 				getIstarData().getIstar_model().getElements().add(new_element);
+				
 
 			} else {
 
 				String goal = usData.getUsList().get(i).getElements().get(2).getDescription();
 				String actorName = getIstarData().getActorNameFromGoal(goal);
-
+				
 				if (actorName != null) {
 					if (!actorName.equals(usData.getUsList().get(i).getElements().get(0).getDescription())) {
 
