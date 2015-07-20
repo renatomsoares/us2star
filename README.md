@@ -1,5 +1,5 @@
 # Applying the US2StarTool in a real example
-Link: goo.gl/WZ90JF
+Link: https://goo.gl/WZ90JF
 
 # Example of use (video)
 Link: https://goo.gl/thA4Wm
